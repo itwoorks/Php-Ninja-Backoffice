@@ -3,9 +3,9 @@
 $config = Config::singleton();
 
 	$config->set('lang','esp');
-	$config->set('base_title','magma');
-	$config->set('base_url','http://publicaenmagma.es/produccion/web/admin/');
-	$config->set('base_url_data','http://publicaenmagma.es/produccion/web/data/');
+	$config->set('base_title','PAGE TITLE');
+	$config->set('base_url','http://');
+	$config->set('base_url_data','http://');
 	$config->set('db_prefix','');
 	$config->set('tabla_default','eventos');
     $config->set('validUser','test');
@@ -39,7 +39,7 @@ $config = Config::singleton();
 	$config->set('modelsFolder', 'models/');
 	$config->set('viewsFolder', 'views/');
   
-	$config->set('dbhost', 'db446242235.db.1and1.com');
+	$config->set('dbhost', 'localhost');
 	$config->set('dbname', 'db446242235');
 	$config->set('dbuser', 'dbo446242235');
 	$config->set('dbpass', 'vivalavida');
