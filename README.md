@@ -2,9 +2,10 @@
 
 
 Author: Beto Ayesa  
-First Version: 1/7/2008  
 contacto@phpninja.info  
-www.phpninja.info
+www.phpninja.info  
+Version 3.1  
+First Version: 1/7/2008  
 
 
 Abstract
@@ -18,10 +19,15 @@ This is for you if:
 
 Building custom solutions means field by field CMS solutions.
 This solution its about making our own field types, so any field type include post and pre process functions before update bd.
-Example:
+  
+  Suitable for: small-mid web projects  
+  Alternative to: Wordpress, related CMS  
+  Perfect for: Graphic Designers projects, or high customization required  
+  Biggest Advantage: Field by field customization
+  
 
-Installation
-------------
+Installation in 1 minute
+------------------------
 #### Requirements:
 - PHP >=4
 - MySQL
@@ -50,24 +56,61 @@ Customization
 
 You have this variables available:
 * $this->fieldname
-* $this->value
+* $this->value  
 
-Example of Field File:
 
-#### Customizing tables/fields 
-Any field type wasn't detected properly?
-* check available field types at /lib/fields , 
+Example of Field Type PASSWORD. /lib/fields/password.php:
+<pre>
+final class password extends field{
+        function view(){
+           return "Password encriptado md5";
+        }
+        function bake_field (){
+           return "<input type=\"text\" cols=\"120\" id=\"".$this->fieldname."\" name=\"".$this->value."\" value=\"\">
+        }
+        function exec_add () {
+           if ($this->value != "")
+	         	return sha1(strtolower($this->value));
+		         else return '';
+	       }
+	       function exec_edit () {
+		         if ($this->value != "")
+			             return sha1(strtolower($this->value)); 
+	              	return '';
+	       }
+}
+</pre>
+
+#### Customizing tables/fields (SETUPS files)
+
+* Check available field types at /lib/fields , or create new ones.
 * Go to /setups/
 * Open the php file of the table you want to modify
-* modify the Array table definitions
+* Modify the Array table definitions  
+  
 Example of Table File:
 
 How does it work?
 -----------------
-Then you can edit every single file to check fields labels, fields types and table label.
-After that, you can map field by field at /setup/TABLE_NAME.php
-setting custom fi-eld types for every field,
+Controllers: /controllers/  
+
+#### formController
+*  Build
+*  Update
+*  Delete  
+
+#### showController
+*  Table
+
+Example:
+
+1.  First you create alternative db field types definitions - /setup/ php files. You can edit every single file to check fields labels, fields types and table label,  
 so the program will automatically generate forms, tables and update querys, based on the information in /setups for each table.
+2.  You go by http://yourpoject/show/table/accounts (example)
+3.  Your /setup file is read, and a table with your fields will be generated, post processing every field value.
+4.  You can add new element or edit one.
+5.  http://yourproject/form/build/accounts  a new form will be generated.
+
 
 
 #### License 1/3/2013
