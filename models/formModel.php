@@ -28,6 +28,7 @@ class formModel extends ModelBase
     	$info = substr($add_info_form,0,strlen($add_info_form) - 1);
     	$consulta = $this->db->prepare("INSERT INTO ".$table." (".implode(",",$fields).") VALUES ($info)");
         $consulta->execute();
+//        die( "INSERT INTO ".$table." (".implode(",",$fields).") VALUES ($info)");
        
     	
 	}

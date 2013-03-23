@@ -9,17 +9,18 @@ class showModel extends ModelBase
 	
 	public function getItemsHead($table){
     	require "setup/".$table.".php";
-		if ( isset($fields_to_show) and is_array($fields_to_show) ) return  $fields_to_show ;
-			   return $fields_labels;
-			}
+		if ( isset($fields_to_show) and is_array($fields_to_show) and count($fields_to_show)>1) 
+			return  $fields_to_show ;
+	   return $fields_labels;
+	}
+
     public function getAll($table){
     
         include "setup/".$table.".php";
         include "lib/fields/field.php";
         
         $order = (gett('sorder') != -1) ? gett('sorder') : $default_order; 
-        
-        
+             
         $consulta = $this->db->prepare('SELECT * FROM '.$table.' order by '.$order);
         $consulta->execute();
         $array_return = array();
@@ -28,7 +29,7 @@ class showModel extends ModelBase
             $row_array = array();
             $row_array['id'] = $r['id'];
             for ($i = 0; $i < count($fields);$i++): 
-	               if (!isset($fields_to_show) or empty($fields_to_show) or in_array($fields[$i],$fields_to_show) ): 
+	               if (!isset($fields_to_show) or in_array($fields[$i],$fields_to_show) or empty($fields_to_show)   ): 
 						if (!class_exists($fields_types[$i])) 
 						    die ("La clase ".$fields_types[$i]." no existe");
 				        $field_aux = new $fields_types[$i]($fields[$i],$fields_labels[$i],$fields_types[$i],$r[$fields[$i]]);

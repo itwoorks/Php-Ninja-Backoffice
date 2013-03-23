@@ -3,11 +3,11 @@
 final class password extends field{
 
 	function view(){
-		echo "Password encriptado md5";
+		return "Password encriptado";
 	}
 	function bake_field (){
 	
-			echo "<input type=\"text\" cols=\"120\" id=\"".$this->fieldname."\" name=\"".$this->value."\" value=\"\"><BR>Se sobre-escribira el password anterior."; 
+			return "<input type=\"text\" cols=\"120\" id=\"".$this->fieldname."\" name=\"".$this->value."\" value=\"\"><BR>Se sobre-escribir&aacute; el password anterior."; 
 					
 					
 					

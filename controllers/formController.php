@@ -10,9 +10,8 @@ class formController extends ControllerBase
         $table = gett('a');
         $rid = gett('i');
         $op = gett('m');
-	
         require "setup/".$table.".php";
-            			
+        if ($rid == '') $rid =-1;    			
         $form_html = "";
         $raw = ($rid != -1) ? $form->getFormValues($table,$rid) : '';
 				//print_r($raw);
@@ -50,6 +49,7 @@ class formController extends ControllerBase
         	$form = new formModel();
         	$rid = gett('rid');
         	$table = gett('table');
+
       		if ($rid == -1) $form->add($table);
 			else $form->edit($table,$rid);
 

@@ -10,10 +10,10 @@ final class number extends field{
 	}
 		
 	function exec_add () {
-		
+		return $this->value;
 	}
 	function exec_edit () {
-	
+		return $this->value;	
 	}
 
 }

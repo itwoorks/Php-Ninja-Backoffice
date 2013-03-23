@@ -137,7 +137,7 @@ $.extend($.expr[':'], {  'containsi': function(elem, i, match, array)  {    retu
 		nextButtonText: "Siguiente",
 		prevButtonText: "Anterior",
 		firstButtonText: "Primera",
-		lastButtonText: "Última",
+		lastButtonText: "&Uacute;ltima",
 		paginationControlsClass: "paginationControls",
 		paginationInfoClass: "paginationInfo",
 		search: true

@@ -36,7 +36,8 @@ final class dias_semana extends field{
 	}
 		
 	function exec_add () {
-		if ($this->value == '') return '';
+		if ($this->value == '' or $this->value == -1) return '';
+
 		return implode(",",$this->value);
 
 	}

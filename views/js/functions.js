@@ -249,9 +249,10 @@ jQuery.fn.filterOn = function(parent) {
             $(select).find('option').each(function() { 
                 options.push({value: $(this).val(), text: $(this).text(), parent: $(this).attr("parent")});
 			});
-
+			val_selected = $(select).find('option:selected').val();
 			console.log(options);
 			$(select).html('<option value="-1">---</option>');
+            
             $(parent).change(function() {
 				$(select).html('<option value="-1">---</option>');   		        
 				parent_value = $('option:selected',this).val();
@@ -264,5 +265,22 @@ jQuery.fn.filterOn = function(parent) {
                     }
                 });  
             });
+
+				parent_value = $(parent).find('option:selected',this).val();
+				if (parent_value != '' && parent_value != '-1'){
+              $.each(options,function(i){
+                    var option = options[i];
+	                   var option = options[i];
+                    if (option.parent == parent_value){
+                    	if (val_selected == option.value){
+                    	aux = $('<option>').text(option.text).val(option.value).attr("selected","selected");
+                    	}else{
+                         aux = $('<option>').text(option.text).val(option.value);
+                         }
+                        $(select).append(aux   );
+                    }
+                }); 
+                }
+            //$(parent).trigger('change');
     	});
 }

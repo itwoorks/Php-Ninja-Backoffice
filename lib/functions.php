@@ -6,6 +6,7 @@
 	  // $retrieved = str_replace("/","",$retrieved);
 	//   $retrieved = preg_replace('[^a-zA-Z0-9_-]', '', $retrieved);
 	  // if (trim($retrieved) == '') $retrieved = -1;
+
 	   return $retrieved;
     }
 
