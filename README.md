@@ -9,7 +9,7 @@ First Version: 1/7/2008
 
 Introduction
 ------------
-I am using this custom CMS solution for more than 6 years in tens of projects.  
+I am using this custom CRUD solution for more than 6 years in tens of projects.  
 I believe in technology independence, I don't want my clients get caught, this is why I made this Git Repo under MIT License.
 
 This is for you if:
