@@ -146,45 +146,20 @@ class formModel extends ModelBase
 
 		function updateOrder(){
 
-		// INCLUDES
+			$tabla = $_POST['tabla'];
+			$action 				= mysql_real_escape_string($_POST['action']); 
+			$updateRecordsArray 	= $_POST['recordsArray'];
 
-include_once "../../lib/core/ninja.state.php";
-
-
-// ESTADO
-
-$ninjaState = new ninjaState("../../config.php");
-
-$tabla = $_POST['tabla'];
-/*
-$ninjaJs = new ninjaJavascript();
-$ninjaForm = new ninjaForm();
-$ninjaTabla = new ninjaTabla();
-*/
-
-
-
-$action 				= mysql_real_escape_string($_POST['action']); 
-$updateRecordsArray 	= $_POST['recordsArray'];
-
-if ($action == "updateRecordsListings"){
+			if ($action == "updateRecordsListings"){
 	
-	$listingCounter = 0;
-	foreach ($updateRecordsArray as $recordIDValue) {
-		$query = "UPDATE ".$tabla." SET orden = " . $listingCounter . " WHERE id = " . $recordIDValue;		
-		
-		mysql_query($query,$ninjaState->ninjaConfig->link) or die('Error, insert query failed');
-		$listingCounter = $listingCounter + 1;	
-	}
-	echo $listingCounter;
-/*
-	
-	echo '<pre>';
-	print_r($updateRecordsArray);
-	echo '</pre>';
-	echo 'If you refresh the page, you will see that records will stay just as you modified.';
-*/
-}
+				$listingCounter = 0;
+				foreach ($updateRecordsArray as $recordIDValue) {
+						$consulta = $this->db->prepare("UPDATE ".$tabla." SET orden = " . $listingCounter . " WHERE id = " . $recordIDValue);		
+					$consulta->execute();
+					$listingCounter = $listingCounter + 1;	
+				}
+				echo $listingCounter;
+			}
 
 }
 }

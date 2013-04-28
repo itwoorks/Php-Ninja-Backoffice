@@ -42,11 +42,40 @@ Installation in 1 minute
 * Goto your http:// 
 * Login with your user / pass
 * You will be able to view your db data, add, edit or delete fields
+* Go to /setup/ and revise $field_labels and $fields_types arrays
  
 Customization
 -------------
 
-#### Adding New Field Types
+#### Customizing tables/fields (SETUPS files)
+
+* Check available field types at /lib/fields , or create new ones.
+* Go to /setups/
+* Open the php file of the table you want to modify
+* Modify the Array table definitions  
+ 
+Arrays:  
+* fields: Array containing all db field names 
+* fields_to_show: array containing fields that will show up when listing all registrys. Default empty = All
+* fields_labels: Labels to show on headers and input labels
+* fields_types: Array containing each field type.  
+ 
+So we have that first field is email, it will show up because it's inside fields_to_show array, the label will
+be same but with capital letter and -, and the type of this field is "email". So, before updating this field it will be
+validated as an email.  
+
+  
+Example of Table File:
+<pre>
+$table_label = "Usuarios";
+$default_order = "id ASC";
+$fields= array("email","username","password","nombre","apellidos","fecha_nacimiento","empresa","telf","direccion","municipio","provincia","codigopostal");
+$fields_to_show = array("email","nombre","apellidos","empresa","telf","direccion","municipio","provincia","codigopostal");
+$fields_labels= array("E-mail","username","password","nombre","apellidos","fecha nacimiento","empresa","telf","direccion","municipio","provincia","código postal");
+$fields_types=array("email","literal","password","literal","literal","fecha","literal","literal","text","literal","literal","codigopostal");  
+</pre>
+
+#### Adding or Modifying Field Types
 * go to /lib/fields
 * Duplicate an existing file, and set the field type's name as a filename. Example: Truefalse, Tags
 * WARNING: dont use php core functions as field type name's.
@@ -88,36 +117,10 @@ final class password extends field{
 }
 </pre>
 
-#### Customizing tables/fields (SETUPS files)
-
-* Check available field types at /lib/fields , or create new ones.
-* Go to /setups/
-* Open the php file of the table you want to modify
-* Modify the Array table definitions  
- 
-Arrays:  
-* fields: Array containing all db field names 
-* fields_to_show: array containing fields that will show up when listing all registrys. Default empty = All
-* fields_labels: Labels to show on headers and input labels
-* fields_types: Array containing each field type.  
- 
-So we have that first field is email, it will show up because it's inside fields_to_show array, the label will
-be same but with capital letter and -, and the type of this field is "email". So, before updating this field it will be
-validated as an email.  
-
-  
-Example of Table File:
-<pre>
-$table_label = "Usuarios";
-$default_order = "id ASC";
-$fields= array("email","username","password","nombre","apellidos","fecha_nacimiento","empresa","telf","direccion","municipio","provincia","codigopostal");
-$fields_to_show = array("email","nombre","apellidos","empresa","telf","direccion","municipio","provincia","codigopostal");
-$fields_labels= array("E-mail","username","password","nombre","apellidos","fecha nacimiento","empresa","telf","direccion","municipio","provincia","código postal");
-$fields_types=array("email","literal","password","literal","literal","fecha","literal","literal","text","literal","literal","codigopostal");  
-</pre>
 
 
-License 1/3/2013
+
+License
 ----------------
 MIT License - fork, modify and use however you want.
 
