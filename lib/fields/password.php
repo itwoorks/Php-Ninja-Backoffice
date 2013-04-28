@@ -15,12 +15,12 @@ final class password extends field{
 		
 	function exec_add () {
 		if ($this->value != "")
-		return sha1(strtolower($this->value));
+		return md5(strtolower($this->value));
 		else return '';
 	}
 	function exec_edit () {
 		if ($this->value != "")
-			return sha1(strtolower($this->value)); 
+			return md5(strtolower($this->value)); 
 		return '';
 	}
 

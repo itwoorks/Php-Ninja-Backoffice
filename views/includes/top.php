@@ -49,7 +49,7 @@
             </p>
             <ul class="nav">
 
-              <li><a href="<?= $base_url ?>">Ir a la página</a></li>
+              <li><a href="<?= $base_url ?>../">Ir a la página</a></li>
             <li><a href="login/logout">Cerrar Sesión</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -67,18 +67,13 @@
             <ul class="nav nav-list">
               
 
-
 		
 <? foreach($menu as $item): ?>
 			   <li><a href="show/table/<?= $item[0] ?>"><i class="icon-book"></i>    <?= $item[1] ?></a></li>
 			<? endforeach;?>
 
+         
 
-              
-			
-
-
-          
           </div><!--/.well -->
         </div><!--/span-->
 	
