@@ -20,6 +20,7 @@ This is for you if:
 * Built with Twitter Bootstrap
 * jQuery UI
 * MVC Php
+* Automatic image processing (3 sizes by default thumbs,midds,bigs)
 * Suitable for: small-mid web projects  
 * Alternative to: Wordpress, related CMS  
 * Perfect for: Graphic Designers projects, or high customization required  
@@ -30,15 +31,18 @@ Installation in 1 minute
 ------------------------
 #### Requirements:
 - PHP >=4
+- PDO:: Support
 - MySQL
 - Before building your Bd, make sure that:
 * every table has 'id' PRIMARY auto increment FIELD
 * Foreign Keys must follow this pattern TABLENAMEID, Example: accounts -> accountsId
+* If you want to use drag and drop rows sorting, you must have a INT field called 'orden'
 
 #### Steps:  
 * Set your own database, general project settings and admin password at config.php
 * chmod 777 /setup/ - necesary if you want to auto generate TABLE SETUP files
 * Run /install/makeSetups from the browser. All setup files will be created. 
+* chmod 777 /data/ - folder where images and files will be stored
 * Goto your http:// 
 * Login with your user / pass
 * You will be able to view your db data, add, edit or delete fields
@@ -46,6 +50,24 @@ Installation in 1 minute
  
 Customization
 -------------
+
+#### Localization
+Php Ninja Backoffice is born in a European zone.
+Dates and numbers are by default in European format, if you want to edit em 
+modify: 
+/lib/fields/fecha.php - exec_add, exec_edit, view
+/lib/fields/number.php - exec_add, exec_edit, view
+/lib/functions.php - mysql_to_fecha() and fecha_to_mysql()
+
+#### Automatic image processing
+FIELD TYPE: file_img
+
+All images uploaded will be resized by default (see config.php thumbs_w thumbs_h .....)
+modify your defaults widths and heights at config.php
+
+You can use Resize, Crop or Both. See /lib/fields/file_img
+
+
 
 #### Customizing tables/fields (SETUPS files)
 
