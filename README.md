@@ -4,8 +4,7 @@
 Beto Ayesa,  @php_ninja
 contacto@phpninja.info  
 www.phpninja.info  
-Version 3.1  
-First Version: 1/7/2008  
+ 
 
 Introduction
 ------------
