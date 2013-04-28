@@ -68,7 +68,6 @@ modify your defaults widths and heights at config.php
 You can use Resize, Crop or Both. See /lib/fields/file_img
 
 
-
 #### Customizing tables/fields (SETUPS files)
 
 * Check available field types at /lib/fields , or create new ones.
