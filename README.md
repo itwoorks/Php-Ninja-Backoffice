@@ -40,6 +40,7 @@ Installation in 1 minute
 
 #### Steps:  
 * Set your own database, general project settings and admin password at config.php
+* db_prefix is your tables prefix (ex. wp_)
 * chmod 777 /setup/ - necesary if you want to auto generate TABLE SETUP files
 * Run /install/makeSetups from the browser. All setup files will be created. 
 * chmod 777 /data/ - folder where images and files will be stored
