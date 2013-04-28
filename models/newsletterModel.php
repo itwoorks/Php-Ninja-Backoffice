@@ -16,13 +16,14 @@ class newsletterModel extends ModelBase
 			$emailBody = $_POST['emailBody'];
 			$rows = $consulta->fetchAll();
 			$r = '';
+			$config = Config::singleton();
 			foreach($rows as $row) {
 		
 				$emailUser = $row['email'];
 				// Define mail object and mail parameters
 				$mail = new PHPMailer();
-				$mail->From = 'noreply@publicaenmagma.es';
-				$mail->FromName = 'Magma';
+				$mail->From = $config->get('email');
+				$mail->FromName = $config->get('base_title');
 				$mail->AddAddress($emailUser);
 				$mail->Subject = $emailSubject;
 				$mail->Body = $emailBody;
