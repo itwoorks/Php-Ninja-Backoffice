@@ -37,7 +37,7 @@ Installation in 1 minute
 
 #### Steps:  
 * Set your own database, general project settings and admin password at config.php
-* chmod 777 /setup/ - necesary if you want to auto generate TABLE SETUP files
+* Change permissions chmod 777 in file /setup/ - necesary if you want to auto generate TABLE SETUP files
 * Run /install/makeSetups from the browser. All setup files will be created. 
 * Goto your http:// 
 * Login with your user / pass
