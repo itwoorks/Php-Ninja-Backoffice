@@ -67,7 +67,7 @@ class showModel extends ModelBase
 				$("#tablaMain tbody").sortable({ opacity: 0.6, cursor: "move", update: function() {
 					var order = $(this).sortable("serialize") + "&action=updateRecordsListings&tabla='.$table.'";
 					console.log(order);
-					$.post("modules/jquery-drag-n-drop/updateDB.php", order, function(theResponse){
+					$.post("form/updateOrder", order, function(theResponse){
 						console.log(theResponse);
 					});
 					}

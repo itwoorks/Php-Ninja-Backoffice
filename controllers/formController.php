@@ -78,7 +78,9 @@ class formController extends ControllerBase
     }
 	
 	public function updateOrder(){
-
+		include "models/formModel.php";
+        $form = new formModel();
+        $form->updateOrder();
 	}
 }
 ?>

@@ -6,6 +6,7 @@ $config = Config::singleton();
 	$config->set('base_title','PAGE TITLE');
 	$config->set('base_url','http://');
 	$config->set('base_url_data','http://');
+	$config->set('email','noreply@publicaenmagma.es');
 	$config->set('db_prefix','');
 	$config->set('tabla_default','eventos');
     $config->set('validUser','test');

@@ -49,7 +49,7 @@
             </p>
             <ul class="nav">
 
-              <li><a href="<?= $base_url ?>">Ir a la página</a></li>
+              <li><a href="<?= $base_url ?>../">Ir a la página</a></li>
             <li><a href="login/logout">Cerrar Sesión</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -67,40 +67,13 @@
             <ul class="nav nav-list">
               
 
-
-<!--		
+		
 <? foreach($menu as $item): ?>
 			   <li><a href="show/table/<?= $item[0] ?>"><i class="icon-book"></i>    <?= $item[1] ?></a></li>
 			<? endforeach;?>
--->
 
-              
-			<ul class="nav">
-			
-<li class="nav-header">EVENTOS</li>
-	   <li class="active"><a href="show/table/eventos"><i class="icon-book"></i>    Eventos</a></li>
-		   <li><a href="show/table/categorias"><i class="icon-book"></i>    Categorías</a></li>
-		   <li><a href="show/table/subcategorias"><i class="icon-book"></i>    Subcategorías</a></li>
-					  <li><a href="show/table/municipios"><i class="icon-book"></i>    Municipios</a></li>
-      
-         <li class="nav-header">PAGOS</li>
-         	   <li><a href="show/table/payments"><i class="icon-book"></i>    Transacciones</a></li>	 
-         	   <li><a href="show/table/creditos"><i class="icon-book"></i> Créditos</a></li>	   
-         	   <li><a href="show/table/opciones"><i class="icon-book"></i> Opciones</a></li>	   
-		   <li class="nav-header">PUBLICIDAD</li>
-         	   <li><a href="show/table/publicidad"><i class="icon-book"></i>    Publicidad</a></li>	   
-	
-   <li class="nav-header">USUARIOS</li>
-		   <li><a href="show/table/accounts"><i class="icon-book"></i>    Usuarios</a></li>
-		   <li><a href="show/table/accounts_facturacion"><i class="icon-book"></i> Facturación</a></li>
+         
 
-
-  
-            </ul>
-          </ul>
-
-
-          
           </div><!--/.well -->
         </div><!--/span-->
 	

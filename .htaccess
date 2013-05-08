@@ -6,7 +6,7 @@ DirectoryIndex index.html index.php
 RewriteEngine On
 
 # Installation directory
-RewriteBase /
+RewriteBase /YOUR ROOT URL 
 
 # Allow any files or directories that exist to be displayed directly
 RewriteCond %{REQUEST_FILENAME} !-f
