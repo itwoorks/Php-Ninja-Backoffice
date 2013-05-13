@@ -143,13 +143,12 @@ class formModel extends ModelBase
 							";
 						break;
 						case 'editor':
-						$output .= " $('input[name=\"".$fields[$i]."\"]').attr('value', encodeURIComponent( $('#".$fields[$i]."').elrte('val') ) ) ;";
-						
+						$output .= " $('input[name=\"".$fields[$i]."\"]').attr('value', encodeURIComponent( $('#".$fields[$i]."').elrte('val') )) ;"	 		;
 						break;
-						
 					}
 				}
 		  $output .=" busy();";
+		  
 		  $output .=" z.submit();
 		  }";    
 		
