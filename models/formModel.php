@@ -77,6 +77,8 @@ class formModel extends ModelBase
 	{   
 	    require "setup/".$table.".php";
 		$output = "";
+
+		/* Inicialització Scripts */
 		if(in_array('fecha', $fields_types) or in_array('hora',$fields_types) or in_array('combo_child',$fields_types) or in_array('editor',$fields_types))
 				for ($i=0;$i< count($fields);$i++){
 						if ($fields_types[$i] == 'fecha')
@@ -94,20 +96,16 @@ class formModel extends ModelBase
 								// lang     : 'ru',
 								height   : 450,
 								toolbar  : 'complete',
-								cssfiles : ['http://www.itwoorks.com/rising/admin/views/elrte/src/elrte/css/elrte-inner.css']
+								cssfiles : ['views/elrte/src/elrte/css/elrte-inner.css']
 							}
-							$('#editor').elrte(opts);";
+							$('#".$fields[$i]."').elrte(opts);";
 						}
 						if ($fields_types[$i] == 'combo_child'){
-		
-								$output .= "$('#".$fields[$i]."').filterOn('#".$fields[$i-1]."') ;
-
-";
-											
-
+								$output .= "$('#".$fields[$i]."').filterOn('#".$fields[$i-1]."') ;";
 						}
 				}
-	
+
+		/* Before Submit */
     	$output .="\n function check_form_values(z){
 			
 					//var z = document.getElementById(x);
@@ -144,8 +142,8 @@ class formModel extends ModelBase
 							";
 						break;
 						case 'editor':
-						$output .= " $('input[name=\"".$fields[$i]."\"]').val( $('#".$fields[$i]."').saveHtml() ) ;"
-						;
+						$output .= " $('input[name=\"".$fields[$i]."\"]').val( $('#".$fields[$i]."').elrte('val') ) ;"	 		;
+						break;
 					}
 				}
 		  $output .=" busy();";
