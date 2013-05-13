@@ -77,7 +77,8 @@ class formModel extends ModelBase
 	{   
 	    require "setup/".$table.".php";
 		$output = "";
-
+        $config = Config::singleton();
+        
 		/* Inicialització Scripts */
 		if(in_array('fecha', $fields_types) or in_array('hora',$fields_types) or in_array('combo_child',$fields_types) or in_array('editor',$fields_types))
 				for ($i=0;$i< count($fields);$i++){
@@ -96,7 +97,7 @@ class formModel extends ModelBase
 								// lang     : 'ru',
 								height   : 450,
 								toolbar  : 'complete',
-								cssfiles : ['views/elrte/src/elrte/css/elrte-inner.css']
+								cssfiles : ['".$config->get('base_url')."views/elrte/src/elrte/css/elrte-inner.css']
 							}
 							$('#".$fields[$i]."').elrte(opts);";
 						}
