@@ -15,7 +15,8 @@
 	   	<link href="views/css/main.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="views/jQuery-ui-1.8.16/themes/base/jquery.ui.all.css">
 
-	 	<script src="views/js/jquery.js">	</script>	
+
+	 	<script src="views/js/jquery.js"></script>	
 
 		<script src="views/jQuery-ui-1.8.16/minified/jquery.ui.core.min.js"></script>
 		<script src="views/jQuery-ui-1.8.16/minified/jquery.ui.widget.min.js"></script>
@@ -24,12 +25,28 @@
 		<script src="views/jQuery-ui-1.8.16/minified/jquery.ui.sortable.min.js"></script>
 		<script src="views/jQuery-ui-1.8.16/i18n/jquery.ui.datepicker-es.js"></script>
 		<script src="views/jQuery-ui-1.8.16/jquery.timepicker.js"></script>
+		
+<!--ELRTE-->
+	<!-- jQuery and jQuery UI -->
+	<script src="views/elrte/js/jquery-1.6.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="views/elrte/js/jquery-ui-1.8.13.custom.min.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" href="views/elrte/css/smoothness/jquery-ui-1.8.13.custom.css" type="text/css" media="screen" charset="utf-8">
+
+	<!-- elRTE -->
+	<script src="views/elrte/js/elrte.min.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" href="views/elrte/css/elrte.min.css" type="text/css" media="screen" charset="utf-8">
+
+	<!-- elRTE translation messages -->
+	<script src="views/elrte/js/i18n/elrte.ru.js" type="text/javascript" charset="utf-8"></script>
+		
+<!--rte-->
+
 		<script>
 		var BASE_URL = '<?= $base_url ?>';
 		</SCRIPT>
 		<script type="text/javascript" src="views/js/functions.js"></script>
 		<script src="views/js/pagination3.js"></script>
-
+		
 	</head>
 	<?php flush(); ?>
 	<body>
