@@ -10,9 +10,9 @@ class formModel extends ModelBase
 	public function add($table){
         include "setup/".$table.".php";
         include "lib/fields/field.php";
-    	
+
     	$add_info_form = "";
-    
+
     	for ($i=0;$i< count($fields) ;$i++){
     		
     		if ($fields[$i] != 'id')	{
@@ -27,6 +27,7 @@ class formModel extends ModelBase
     	}
     	$info = substr($add_info_form,0,strlen($add_info_form) - 1);
     	$consulta = $this->db->prepare("INSERT INTO ".$table." (".implode(",",$fields).") VALUES ($info)");
+    	echo "INSERT INTO ".$table." (".implode(",",$fields).") VALUES ($info)";
         $consulta->execute();
 //        die( "INSERT INTO ".$table." (".implode(",",$fields).") VALUES ($info)");
        
@@ -80,7 +81,7 @@ class formModel extends ModelBase
         $config = Config::singleton();
         
 		/* Inicialització Scripts */
-		if(in_array('fecha', $fields_types) or in_array('hora',$fields_types) or in_array('combo_child',$fields_types) or in_array('editor',$fields_types))
+		if(in_array('fecha', $fields_types) or in_array('hora',$fields_types) or in_array('combo_child',$fields_types) or in_array('tinymce',$fields_types))
 				for ($i=0;$i< count($fields);$i++){
 						if ($fields_types[$i] == 'fecha')
 							$output .='$(function() {	$("#'.$fields[$i].'").datepicker(); });';
@@ -91,16 +92,34 @@ class formModel extends ModelBase
 									timeFormat: 'hh:mm:ss'
 									});";
 						}
-						if ($fields_types[$i] == 'editor'){
-							$output .= "var opts = {
-								cssClass : 'el-rte',
-								// lang     : 'ru',
-								height   : 450,
-								toolbar  : 'complete',
-								cssfiles : ['".$config->get('base_url')."views/elrte/src/elrte/css/elrte-inner.css']
-							}
-							$('#".$fields[$i]."').elrte(opts);";
-						}
+						// TINYMCE INIT		
+						if ($fields_types[$i] == 'tinymce')
+						$output.= 'tinyMCE.init({
+
+		mode : "textareas", 
+        editor_selector : "mceEditor",
+		theme: "advanced",
+		force_br_newlines :true,
+force_p_newlines : false,
+		relative_urls : false,
+		width: "950px",
+		height: "350px",
+		theme_advanced_resizing : true,
+		theme_advanced_buttons1 : "formatselect,separator,bold,italic,underline,separator,justifyleft,justifycenter,justifyright, justifyfull,separator,undo,redo,link,unlink,insertimage,separator,fullscreen,code",
+  theme_advanced_buttons2 : "",
+        theme_advanced_buttons3 : "",
+        theme_advanced_buttons4 : "",
+		theme_advanced_toolbar_location : "top",
+		theme_advanced_toolbar_align : "left",
+		theme_advanced_statusbar_location : "bottom",
+
+		extended_valid_elements : "iframe[src|width|height|name|align]",
+	plugins : "safari,pagebreak,style,layer,table,save,advhr,imagemanager,advlink,iespell,insertdatetime,preview,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,inlinepopups",
+		content_css: "tinymce_content.css"
+		
+	});';
+	// " -> TINY MCE 
+	
 						if ($fields_types[$i] == 'combo_child'){
 								$output .= "$('#".$fields[$i]."').filterOn('#".$fields[$i-1]."') ;";
 						}
