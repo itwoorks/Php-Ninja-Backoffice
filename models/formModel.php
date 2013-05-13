@@ -77,7 +77,7 @@ class formModel extends ModelBase
 	{   
 	    require "setup/".$table.".php";
 		$output = "";
-		if(in_array('fecha', $fields_types) or in_array('hora',$fields_types) or in_array('combo_child',$fields_types))
+		if(in_array('fecha', $fields_types) or in_array('hora',$fields_types) or in_array('combo_child',$fields_types) or in_array('editor',$fields_types))
 				for ($i=0;$i< count($fields);$i++){
 						if ($fields_types[$i] == 'fecha')
 							$output .='$(function() {	$("#'.$fields[$i].'").datepicker(); });';
@@ -87,6 +87,16 @@ class formModel extends ModelBase
 									minuteGrid: 10,
 									timeFormat: 'hh:mm:ss'
 									});";
+						}
+						if ($fields_types[$i] == 'editor'){
+							$output .= "var opts = {
+								cssClass : 'el-rte',
+								// lang     : 'ru',
+								height   : 450,
+								toolbar  : 'complete',
+								cssfiles : ['http://www.itwoorks.com/rising/admin/views/elrte/src/elrte/css/elrte-inner.css']
+							}
+							$('#editor').elrte(opts);";
 						}
 						if ($fields_types[$i] == 'combo_child'){
 		
@@ -133,10 +143,13 @@ class formModel extends ModelBase
 								}
 							";
 						break;
-
+						case 'editor':
+						$output .= " $('input[name=\"".$fields[$i]."\"]').val( $('#".$fields[$i]."').saveHtml() ) ;"
+						;
 					}
 				}
 		  $output .=" busy();";
+		  
 		  $output .=" z.submit();
 		  }";    
 		
