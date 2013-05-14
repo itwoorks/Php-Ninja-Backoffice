@@ -10,23 +10,23 @@
 		<base href="<?= $base_url ?>" content="<?= $base_url ?>">
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	   	<link href="views/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	   	<link href="views/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+	   	<link href="views/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	   	<link href="views/vendor/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
 	   	<link href="views/css/main.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="views/jQuery-ui-1.8.16/themes/base/jquery.ui.all.css">
+		<link rel="stylesheet" href="views/vendor/jQuery-ui-1.8.16/themes/base/jquery.ui.all.css">
 
 
 	 	<script src="views/js/jquery.js"></script>	
 
-		<script src="views/jQuery-ui-1.8.16/minified/jquery.ui.core.min.js"></script>
-		<script src="views/jQuery-ui-1.8.16/minified/jquery.ui.widget.min.js"></script>
-		<script src="views/jQuery-ui-1.8.16/minified/jquery.ui.mouse.min.js"></script>
-		<script src="views/jQuery-ui-1.8.16/minified/jquery.ui.datepicker.min.js"></script>
-		<script src="views/jQuery-ui-1.8.16/minified/jquery.ui.sortable.min.js"></script>
-		<script src="views/jQuery-ui-1.8.16/i18n/jquery.ui.datepicker-es.js"></script>
-		<script src="views/jQuery-ui-1.8.16/jquery.timepicker.js"></script>
+		<script src="views/vendor/jQuery-ui-1.8.16/minified/jquery.ui.core.min.js"></script>
+		<script src="views/vendor/jQuery-ui-1.8.16/minified/jquery.ui.widget.min.js"></script>
+		<script src="views/vendor/jQuery-ui-1.8.16/minified/jquery.ui.mouse.min.js"></script>
+		<script src="views/vendor/jQuery-ui-1.8.16/minified/jquery.ui.datepicker.min.js"></script>
+		<script src="views/vendor/jQuery-ui-1.8.16/minified/jquery.ui.sortable.min.js"></script>
+		<script src="views/vendor/jQuery-ui-1.8.16/i18n/jquery.ui.datepicker-es.js"></script>
+		<script src="views/vendor/jQuery-ui-1.8.16/jquery.timepicker.js"></script>
 		
-	<script type="text/javascript" src="views/tiny_mce2/tiny_mce_src.js"></script>
+	<script type="text/javascript" src="views/vendor/tiny_mce2/tiny_mce_src.js"></script>
 
 		<script>
 		var BASE_URL = '<?= $base_url ?>';

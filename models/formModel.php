@@ -115,7 +115,7 @@ force_p_newlines : false,
 
 		extended_valid_elements : "iframe[src|width|height|name|align]",
 	plugins : "safari,pagebreak,style,layer,table,save,advhr,imagemanager,advlink,iespell,insertdatetime,preview,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,inlinepopups",
-		content_css: "tinymce_content.css"
+		content_css: "views/css/tinymce_content.css"
 		
 	});';
 	// " -> TINY MCE 
@@ -161,9 +161,7 @@ force_p_newlines : false,
 								}
 							";
 						break;
-						case 'editor':
-						$output .= " $('input[name=\"".$fields[$i]."\"]').attr('value', encodeURIComponent( $('#".$fields[$i]."').elrte('val') )) ;"	 		;
-						break;
+					
 					}
 				}
 		  $output .=" busy();";

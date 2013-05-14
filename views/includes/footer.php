@@ -14,6 +14,5 @@
 
 	<? 	echo $HOOK_JS; ?>		</script>
 	
-	<small>4.0</small>
 	</body>
 </html>
