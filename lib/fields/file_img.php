@@ -1,6 +1,15 @@
 <?
 							
 final class file_img extends field{
+
+	function get_extension($filename){
+	// get a filename by $filename, returns extension, chars from last appearence of '.'
+		$last = strrpos($filename,'.');
+		$n = strlen($filename) - $last + 1;
+	
+		return strtolower(substr($filename,$last + 1,$n)); 
+	}
+
 	function view(){
 		if ($this->value != "")
 			return "<img width='100' src='".$this->config->get('base_url_data')."img/thumbs/".$this->value."'>";
@@ -23,9 +32,9 @@ final class file_img extends field{
 					copy($_FILES[$this->fieldname]['tmp_name'],$this->config->get('data_dir').'img/'.$filename_new);
 					
 
-					resize_image(get_extension($filename_new),$this->config->get('data_dir').'img/'.$filename_new,$this->config->get('data_dir').'img/'.$filename_new,$this->config->get('big_w'),$this->config->get('big_h')) ;
-					cropImage($this->config->get('thumb_w'), $this->config->get('thumb_h'), $this->config->get('data_dir').'img/'.$filename_new, get_extension($filename_new), $this->config->get('data_dir').'img/'."thumbs/".$filename_new) ;
-					/* resize_image(get_extension($filename_new),$this->config->get('data_dir').'img/'.$filename_new,$this->config->get('data_dir').'img/'."thumbs/".$filename_new,$this->config->get('thumb_w,$this->config->get('thumb_h) ; */
+					resize_image($this->get_extension($filename_new),$this->config->get('data_dir').'img/'.$filename_new,$this->config->get('data_dir').'img/'.$filename_new,$this->config->get('big_w'),$this->config->get('big_h')) ;
+					cropImage($this->config->get('thumb_w'), $this->config->get('thumb_h'), $this->config->get('data_dir').'img/'.$filename_new, $this->get_extension($filename_new), $this->config->get('data_dir').'img/'."thumbs/".$filename_new) ;
+					/* resize_image($this->get_extension($filename_new),$this->config->get('data_dir').'img/'.$filename_new,$this->config->get('data_dir').'img/'."thumbs/".$filename_new,$this->config->get('thumb_w,$this->config->get('thumb_h) ; */
 			return $filename_new;									
 		}
 		return '';
@@ -36,11 +45,11 @@ final class file_img extends field{
 					copy($_FILES[$this->fieldname]['tmp_name'],$this->config->get('data_dir').'img/'.$filename_new);
 					
 					// big
-					resize_image(get_extension($filename_new),$this->config->get('data_dir').'img/'.$filename_new,$this->config->get('data_dir').'img/'.$filename_new,$this->config->get('big_w'),$this->config->get('big_h')) ;
+					$this->resize_image($this->get_extension($filename_new),$this->config->get('data_dir').'img/'.$filename_new,$this->config->get('data_dir').'img/'.$filename_new,$this->config->get('big_w'),$this->config->get('big_h')) ;
 					
 					//thumb
-					/* @resize_image(get_extension($filename_new),$this->config->get('data_dir').'img/'.$filename_new,$this->config->get('data_dir').'img/'."thumbs/".$filename_new,$this->config->get('thumb_w,$this->config->get('thumb_h) ; */
-cropImage($this->config->get('thumb_w'), $this->config->get('thumb_h'), $this->config->get('data_dir').'img/'.$filename_new, get_extension($filename_new), $this->config->get('data_dir').'img/'."thumbs/".$filename_new) ;
+					/* @resize_image($this->get_extension($filename_new),$this->config->get('data_dir').'img/'.$filename_new,$this->config->get('data_dir').'img/'."thumbs/".$filename_new,$this->config->get('thumb_w,$this->config->get('thumb_h) ; */
+$this->cropImage($this->config->get('thumb_w'), $this->config->get('thumb_h'), $this->config->get('data_dir').'img/'.$filename_new, $this->get_extension($filename_new), $this->config->get('data_dir').'img/'."thumbs/".$filename_new) ;
 
 					
 						return $filename_new;
@@ -49,17 +58,9 @@ cropImage($this->config->get('thumb_w'), $this->config->get('thumb_h'), $this->c
 				return '';
 					
 	}
-
-}
-
-
-function get_extension($filename){
-	// get a filename by $filename, returns extension, chars from last appearence of '.'
-	$last = strrpos($filename,'.');
-	$n = strlen($filename) - $last + 1;
 	
-	return strtolower(substr($filename,$last + 1,$n)); 
-}
+	
+
 function cropImage($nw, $nh, $source, $stype, $dest) {
 //
 // CROP IMAGE ( Recorte forzado de imagen )
@@ -253,3 +254,7 @@ imagecopyresampled($thumb,$img,0,0,0,0,$r_ancho,$r_alto,$ancho,$alto);
   
 
   
+
+
+}
+

@@ -1,7 +1,7 @@
 <?
  function gett($var){
 	   $retrieved = -1;	
-	   if (isset ($_GET[$var])) $retrieved = $_GET[$var];
+	   if (isset ($_GET[$var]) and $_GET[$var] != '') $retrieved = $_GET[$var];
 	   else if(isset ($_POST[$var])) $retrieved = $_POST[$var];
 	  // $retrieved = str_replace("/","",$retrieved);
 	//   $retrieved = preg_replace('[^a-zA-Z0-9_-]', '', $retrieved);

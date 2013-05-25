@@ -17,9 +17,12 @@ final class truefalse extends field{
 	}
 		
 	function exec_add () {
+		if ($this->value == -1 or $this->value=='') return '0';
 		return $this->value;
 	}
 	function exec_edit () {
+
+		if ($this->value == -1 or $this->value=='') return '0';
 		return $this->value;	
 	}
 
