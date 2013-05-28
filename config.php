@@ -3,12 +3,11 @@
 $config = Config::singleton();
 
 	$config->set('lang','esp');
-	$config->set('base_title','PAGE TITLE');
-	$config->set('base_url','http://');
-	$config->set('base_url_data','http://');
-	$config->set('email','noreply@publicaenmagma.es');
+	$config->set('base_title','Project');
+	$config->set('base_url','http://www.');
+	$config->set('base_url_data','http://www./');
 	$config->set('db_prefix','');
-	$config->set('tabla_default','eventos');
+	$config->set('tabla_default','foundation');
     $config->set('validUser','test');
     $config->set('validPass','test');
 
@@ -19,8 +18,8 @@ $config = Config::singleton();
 
 
 
-	$config->set('big_h',327);
-	$config->set('big_w',960);
+	$config->set('big_h',0);// 0 for no resize
+	$config->set('big_w',0); // 0 for no resize
 	$config->set('img_content_w',503);
 	$config->set('img_content_h',0);
 	$config->set('thumb_h',180);
@@ -35,12 +34,14 @@ $config = Config::singleton();
 	
 	$config->set('setup_dir',$PATH.'/setup/');
 	$config->set('data_dir',$PATH.'/../data/');
-
+	$config->set('files_dir',$PATH.'/../data/files/');
+	$config->seT('http_files_dir',$config->get('base_url_data').'files/');
+	
 	$config->set('controllersFolder', 'controllers/');
 	$config->set('modelsFolder', 'models/');
 	$config->set('viewsFolder', 'views/');
   
-	$config->set('dbhost', 'localhost');
-	$config->set('dbname', 'db446242235');
-	$config->set('dbuser', 'dbo446242235');
-	$config->set('dbpass', 'vivalavida');
+	$config->set('dbhost', '');
+	$config->set('dbname', '');
+	$config->set('dbuser', '');
+	$config->set('dbpass', '');
