@@ -20,7 +20,7 @@ final class file_img extends field{
 		if ($this->value != "")	{				
 			$output .= "<div id='".$this->fieldname."'>";
 			$output .= "<img  src=\"".$this->config->get('base_url_data')."img/thumbs/".$this->value."\">";
-			$output .= "&nbsp;&nbsp;<a  href=\"javascript:DeleteFile('".$this->value."');\"><img src='views/img/close.jpg'></a></div>"; 
+			$output .= "&nbsp;&nbsp;<a  href=\"javascript:DeleteFile('".$this->fieldname."','".$this->table."','".$this->rid."','".$this->value."');\"><img src='views/img/close.jpg'></a></div>"; 
 		}// else $output .= "No hay ninguna imagen cargada.<BR>";					
 		$output.= "<input type=\"file\" id=\"".$this->fieldname."\" name=\"".$this->fieldname."\">";
 		return $output;
@@ -32,8 +32,8 @@ final class file_img extends field{
 					copy($_FILES[$this->fieldname]['tmp_name'],$this->config->get('data_dir').'img/'.$filename_new);
 					
 
-					resize_image($this->get_extension($filename_new),$this->config->get('data_dir').'img/'.$filename_new,$this->config->get('data_dir').'img/'.$filename_new,$this->config->get('big_w'),$this->config->get('big_h')) ;
-					cropImage($this->config->get('thumb_w'), $this->config->get('thumb_h'), $this->config->get('data_dir').'img/'.$filename_new, $this->get_extension($filename_new), $this->config->get('data_dir').'img/'."thumbs/".$filename_new) ;
+					$this->resize_image($this->get_extension($filename_new),$this->config->get('data_dir').'img/'.$filename_new,$this->config->get('data_dir').'img/'.$filename_new,$this->config->get('big_w'),$this->config->get('big_h')) ;
+					$this->cropImage($this->config->get('thumb_w'), $this->config->get('thumb_h'), $this->config->get('data_dir').'img/'.$filename_new, $this->get_extension($filename_new), $this->config->get('data_dir').'img/'."thumbs/".$filename_new) ;
 					/* resize_image($this->get_extension($filename_new),$this->config->get('data_dir').'img/'.$filename_new,$this->config->get('data_dir').'img/'."thumbs/".$filename_new,$this->config->get('thumb_w,$this->config->get('thumb_h) ; */
 			return $filename_new;									
 		}
@@ -188,7 +188,7 @@ $ancho = imagesx($img);
 $alto = imagesy($img);
 
 
-if ($n_width > $ancho and $n_height > $alto){
+if ($n_width > $ancho and $n_height > $alto or $n_width == 0){
 
 copy($fname,$destino);
 	return false;

@@ -12,15 +12,20 @@ abstract class field{
 	public $value;
 	public $ninjaState;
 	public $label;
+	public $rid;
+	public $table;
+	
    protected $db;
    
-   public final function __construct($fieldname,$label,$type,$value){
+   public final function __construct($fieldname,$label,$type,$value,$table = -1,$rid = -1){
         $this->db = SPDO::singleton();
 		$this->config = Config::singleton();
 		$this->label = $label;
 		$this->fieldname = $fieldname;
 		$this->type = $type;
 		$this->value = $value;
+		$this->table = $table;
+		$this->rid = $rid;
    
    }
 	
@@ -38,7 +43,7 @@ include "file_file.php";
 include "file_img.php";
 include "float.php";
 include "literal.php";
-
+include "tinymce.php";
 include "mp3.php";
 include "multiselect.php";
 include "number.php";
