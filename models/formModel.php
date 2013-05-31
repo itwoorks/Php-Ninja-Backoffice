@@ -175,11 +175,10 @@ class formModel extends ModelBase
     		return $output;
 		}
 
-
 		function updateOrder(){
 
 			$tabla = $_POST['tabla'];
-			$action 				= mysql_real_escape_string($_POST['action']); 
+			$action 				= ($_POST['action']); 
 			$updateRecordsArray 	= $_POST['recordsArray'];
 
 			if ($action == "updateRecordsListings"){
