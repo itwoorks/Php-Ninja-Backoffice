@@ -33,7 +33,7 @@
 		</SCRIPT>
 		<script type="text/javascript" src="views/js/functions.js"></script>
 		<script src="views/js/pagination3.js"></script>
-		
+
 	</head>
 	<?php flush(); ?>
 	<body>
@@ -78,6 +78,12 @@
 
          
 
+  
+            </ul>
+          </ul>
+
+
+          
           </div><!--/.well -->
         </div><!--/span-->
 	

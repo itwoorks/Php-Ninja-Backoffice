@@ -31,11 +31,19 @@ abstract class field{
 	
 	
 }
+include "slug.php";
+include "featured.php";
+include "visible.php";
+include "about_pagesId.php";
+include "courses_pages.php";
+include "coursestypesId.php";
+include "coursesId.php";
 include "disabled.php";
 include "hora.php";
 include "color.php";
 include "combo.php";
 include "combo_child.php";
+include "youtube.php";
 include "email.php";
 include "dias_semana.php";
 include "fecha.php";

@@ -16,12 +16,13 @@ class formModel extends ModelBase
     	for ($i=0;$i< count($fields) ;$i++){
     		
     		if ($fields[$i] != 'id')	{
-    			if ($fields_types[$i] != 'file_img'){
+	    		$retrieved = '';
+    			if ($fields_types[$i] != 'file_img' and $fields_types[$i] != 'file_file'){
     				$retrieved = gett($fields[$i]);
     			} else $retrieved = -1;
     			
     			if (!class_exists($fields_types[$i])) die ("La clase ".$fields_types[$i]." no existe");
-    			$field_aux = new $fields_types[$i]($fields[$i],$fields_labels[$i],$fields_types[$i],$retrieved);
+    			$field_aux = new $fields_types[$i]($fields[$i],$fields_labels[$i],$fields_types[$i],$retrieved,$table);
     			$add_info_form .= "'".$field_aux->exec_add()."',";					
     		}
     	}
@@ -51,12 +52,15 @@ class formModel extends ModelBase
         		
         		if ($fields[$i] != 'id'  )	{					
         			$retrieved = '';		
-        			if ($fields_types[$i] != 'file_img' and $fields_types[$i] != 'file_file'){
-        				$retrieved = $_POST[$fields[$i]];
+        			if ($fields_types[$i] != 'file_img' and $fields_types[$i] != 'file_file' and gett($fields[$i]) != -1){
+        				$retrieved = gett($fields[$i]);
         			}
-        			if ($fields_types[$i] == 'file_img' or $fields_types[$i] == 'file_file' and $_FILES[$fields[$i]]['name'] != "" or $fields_types[$i] != 'file_img' or $fields_types[$i] != 'file_file'){
-        				if (!class_exists($fields_types[$i])) die ("La clase ".$fields_types[$i]." no existe");
-        				$field_aux = new $fields_types[$i]($fields[$i],$fields_labels[$i],$fields_types[$i],$retrieved);
+
+        			
+        			if (!class_exists($fields_types[$i])) die ("La clase ".$fields_types[$i]." no existe");
+        			if (($fields_types[$i] == 'file_img' and $_FILES[$fields[$i]]['name'] != "" or $fields_types[$i] == 'file_file' and $_FILES[$fields[$i]]['name'] != "") or $fields_types[$i] != 'file_img' and $fields_types[$i] != 'file_file'){
+        				
+        				$field_aux = new $fields_types[$i]($fields[$i],$fields_labels[$i],$fields_types[$i],$retrieved,$table,$rid);
         				$edit_info_form .= " ".$table.".".$fields[$i]." = '".$field_aux->exec_edit()."',";
         			}
         		}
@@ -66,7 +70,7 @@ class formModel extends ModelBase
         			
         	$info = substr($edit_info_form,0,strlen($edit_info_form) - 1);
        		$consulta = $this->db->prepare("UPDATE ".$table." set  $info   where id='".$rid."'");
-      		//echo "UPDATE ".$table." set  $info   where id='".$rid."'";
+      	//	echo "UPDATE ".$table." set  $info   where id='".$rid."'";
             $consulta->execute();
       
 	}
@@ -111,7 +115,6 @@ class formModel extends ModelBase
 				for ($i=0;$i< count($fields);$i++){
 						if ($fields_types[$i] == 'fecha')
 							$output .='$(function() {	$("#'.$fields[$i].'").datepicker(); });';
-							
 						if ($fields_types[$i] == 'hora'){
 							$output .= "$('#".$fields[$i]."').timepicker({
 									hourGrid: 4,
@@ -119,14 +122,11 @@ class formModel extends ModelBase
 									timeFormat: 'hh:mm:ss'
 									});";
 						}
-						
-	
 						if ($fields_types[$i] == 'combo_child'){
 								$output .= "$('#".$fields[$i]."').filterOn('#".$fields[$i-1]."') ;";
 						}
 				}
-
-		/* Before Submit */
+	
     	$output .="\n function check_form_values(z){
 			
 					//var z = document.getElementById(x);
@@ -168,7 +168,6 @@ class formModel extends ModelBase
 					}
 				}
 		  $output .=" busy();";
-		  
 		  $output .=" z.submit();
 		  }";    
 		

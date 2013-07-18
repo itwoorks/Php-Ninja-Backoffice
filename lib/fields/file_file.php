@@ -10,7 +10,7 @@ final class file_file extends field{
     	$output = "";
 		if ($this->value != -1){
  			$output .= "<b>Documento cargado:</b> ";
-			$output .= "<div id='".$this->fieldname."'><a  href=\"".$this->config->get('http_files_dir').$this->value."\" target=\"_blank\">".$this->value."</a><a  href=\"javascript:DeleteFile('".$this->fieldname."',".$this->rid.",'".$this->fieldname."','".$this->table."');\"><img src='".$this->config->get('base_http')."lib/img/close.jpg'></a></div>"; }else{ $output .= "ninguno";
+			$output .= "<div id='".$this->fieldname."'><a  href=\"".$this->config->get('http_files_dir').$this->value."\" target=\"_blank\">".$this->value."</a><a  href=\"javascript:DeleteFile('".$this->fieldname."','".$this->table."','".$this->rid."','".$this->value."');\"><img src='".$this->config->get('base_http')."views/img/close.jpg'></a></div>"; }else{ $output .= "ninguno";
 			$output .= "<BR>";
 		}
 							
@@ -21,6 +21,7 @@ final class file_file extends field{
 	function exec_add () {
 		if ($_FILES[$this->fieldname]['name'] != ""){
 					$consulta = $this->db->prepare("SELECT ".$this->fieldname." from ".$this->table." limit 1" );
+					//echo "SELECT ".$this->fieldname." from ".$this->table." limit 1";
 					$consulta->execute();
 					$row2 = $consulta->fetch();
 					if ($row2[$this->fieldname] != ""){

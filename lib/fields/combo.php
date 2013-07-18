@@ -3,6 +3,7 @@
 final class combo extends field{
 
 	function view(){
+
 		$f_fieldname = str_replace("Id","",$this->fieldname);
 		return $this->giveme($f_fieldname,$this->fieldname,$this->value);
 	}
@@ -31,10 +32,16 @@ final class combo extends field{
 
         $consulta = $this->db->prepare("SELECT * from ".$tabla." where id='$valor_en_indice' limit 1" );
         $consulta->execute();
-      	$fetch = $consulta->fetch(PDO::FETCH_NUM);
+      	$row = $consulta->fetch(PDO::FETCH_NUM);
 
-		return $fetch[1];
-	
+
+		if (is_string($row[1]) and $row[1] != '0' and intval($row[1]) == 0 ) return $row[1];
+		else if (is_string($row[2]) and $row[2] != '0' and intval($row[2]) == 0 ) return $row[2];
+		else if (is_string($row[3]) and $row[3] != '0' and intval($row[3]) == 0 ) return $row[3];
+		else return  $row[4];
+		
+
+
 	}
 	
 
@@ -49,7 +56,12 @@ function bake_combo($tabla,$select_name,$id_selected){
 	while ($row = $consulta->fetch(PDO::FETCH_NUM)){
 		$output .= "<option value=\"".$row[0]."\"";
 		if ($row[0] == $id_selected) $output .= " selected";
-		$output .=">".$row[1]."</option>";
+		$output .=">";
+
+		if (is_string($row[1]) and $row[1] != '0' and intval($row[1]) == 0) $output .= $row[1]."</option>";
+		else if (is_string($row[2]) and $row[2] != '0' and intval($row[2]) == 0) $output .= $row[2]."</option>";
+		else if (is_string($row[3]) and $row[3] != '0' and intval($row[3]) == 0) $output .= $row[3]."</option>";
+		else $output .= $row[4]."</option>";
 	}
 	
 	$output .= "</select>";

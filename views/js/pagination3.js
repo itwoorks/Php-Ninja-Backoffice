@@ -46,20 +46,16 @@ $.extend($.expr[':'], {  'containsi': function(elem, i, match, array)  {    retu
 			firstLink = $('.pagination_controls .pagination_first');
 		    lastLink = $('.pagination_controls .pagination_last');
 
-			nextLink.click(function(e){
-				e.preventDefault();
+			nextLink.click(function(){
 		    	base.moveNext();
 		    	});
-		    prevLink.click(function(e){
-				e.preventDefault();
+		    prevLink.click(function(){
 		    	base.movePrev();
 		    	});
-		    firstLink.click(function(e){
-				e.preventDefault();
+		    firstLink.click(function(){
 		    	base.moveToPage(0);
 		    	});
-		    lastLink.click(function(e){
-				e.preventDefault();
+		    lastLink.click(function(){
 		    	base.moveToPage(base.totalPages );
 		    	});
 
