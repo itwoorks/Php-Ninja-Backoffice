@@ -2,11 +2,11 @@
 class installModel extends ModelBase
 {
 	
-    public function makeSetups(){
+    public function makeSetups($table){
 
         $config = Config::singleton();
-        
-        $prefix = $config->get('db_prefix');
+        if (!isset($table)) die("no table selected");
+        $prefix = $table; //$config->get('db_prefix');
         $dbname = $config->get('dbname');
    
         $consulta = $this->db->prepare('SHOW TABLES FROM '.$dbname);
@@ -82,6 +82,8 @@ class installModel extends ModelBase
         
 
 	}	
+	
+
 	
 	      
     public function fillDb($num_recs){
