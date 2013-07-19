@@ -31,7 +31,7 @@ $.extend($.expr[':'], {  'containsi': function(elem, i, match, array)  {    retu
         		
         	
         	   
-          	search_form = $('#search_pagination');		
+          	search_form = base.$el.parent().find('.search_pagination');		
         	
         	search_form.keydown(function(event){
 					vx = $(this);
@@ -41,21 +41,29 @@ $.extend($.expr[':'], {  'containsi': function(elem, i, match, array)  {    retu
 				    }, 50);
 				    						
         	});
+        	
+        	keyword = search_form.attr("value");
+			base.search(keyword);
+						
 			prevLink = $('.pagination_controls .pagination_prev');
 		    nextLink = $('.pagination_controls .pagination_next');
 			firstLink = $('.pagination_controls .pagination_first');
 		    lastLink = $('.pagination_controls .pagination_last');
 
-			nextLink.click(function(){
+			nextLink.click(function(e){
+				e.preventDefault();
 		    	base.moveNext();
 		    	});
-		    prevLink.click(function(){
+		    prevLink.click(function(e){
+				e.preventDefault();
 		    	base.movePrev();
 		    	});
-		    firstLink.click(function(){
+		    firstLink.click(function(e){
+				e.preventDefault();
 		    	base.moveToPage(0);
 		    	});
-		    lastLink.click(function(){
+		    lastLink.click(function(e){
+				e.preventDefault();
 		    	base.moveToPage(base.totalPages );
 		    	});
 
@@ -65,7 +73,7 @@ $.extend($.expr[':'], {  'containsi': function(elem, i, match, array)  {    retu
         };
         base.writeTopControls = function(){
 
-        	$(base.el).before('<div class="pagination_controls pagination pagination-right '+base.options.paginationControlsClass+'"><ul><li><a href="#" class="pagination_first">'+base.options.firstButtonText+'</a></li><li><a href="#" class="pagination_prev">&larr;</a></li><li> <a href="#" class="pagination_next">&rarr;</a></li><li> <a href="#" class="pagination_last">'+base.options.lastButtonText+'</a></li></div><div class=\"clear"></div>');	
+        	$(base.el).before('<div class="pull-right pagination_controls pagination pagination-right '+base.options.paginationControlsClass+'"><ul><li><a href="#" class="pagination_first">'+base.options.firstButtonText+'</a></li><li><a href="#" class="pagination_prev">&larr;</a></li><li> <a href="#" class="pagination_next">&rarr;</a></li><li> <a href="#" class="pagination_last">'+base.options.lastButtonText+'</a></li></div><div class=\"clear"></div><div style="clear:both;"></div>');	
 
         };
         base.writeBottomControls = function(){
@@ -101,7 +109,7 @@ $.extend($.expr[':'], {  'containsi': function(elem, i, match, array)  {    retu
  		};
  		base.refreshPaginationInfo = function(){
  			
- 				$('.pagination_info').html('<span class="label label-info">Info</span> '+base.rows+' entradas. P&aacute;gina '+(base.actualPage+1)+' de '+(base.totalPages+1) );
+ 				$('.pagination_info').html('<span class="label label-info">Info</span> '+base.rows+' rows. Page '+(base.actualPage+1)+' of '+(base.totalPages+1) );
  		};	
         
 		base.refreshView = function(){
@@ -134,10 +142,10 @@ $.extend($.expr[':'], {  'containsi': function(elem, i, match, array)  {    retu
     
     $.pagination.defaultOptions = {
  		itemsPerPage: 50,
-		nextButtonText: "Siguiente",
-		prevButtonText: "Anterior",
-		firstButtonText: "Primera",
-		lastButtonText: "&Uacute;ltima",
+		nextButtonText: "Next",
+		prevButtonText: "Previous",
+		firstButtonText: "First",
+		lastButtonText: "Last",
 		paginationControlsClass: "paginationControls",
 		paginationInfoClass: "paginationInfo",
 		search: true

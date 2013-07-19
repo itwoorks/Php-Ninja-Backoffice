@@ -155,11 +155,11 @@ document.getElementById('overlay').style.display='block';
 
 function DeleteRegistro(div_id,id_registro,cat,tabla){
 
-	if(confirm("Estás seguro de eliminar este elemento?") != false){
+	if(confirm("Are you sure?") != false){
 	$('#'+div_id).remove();
 //	document.getElementById(div_id).style.display = 'none';	
 		ajax=objetoAjax();
-		url = BASE_URL + '?p=delete&m=deleteRow&rid='+id_registro+'&table='+tabla;
+		url = BASE_URL + '?p=delete&m=deleteRow&rid='+id_registro+'&table='+tabla+'&f='+div_id;
 		ajax.open("GET", url);
 		ajax.onreadystatechange=function() {
 			if (ajax.readyState==4) {
@@ -172,10 +172,10 @@ function DeleteRegistro(div_id,id_registro,cat,tabla){
 	}
 }
 
-function DeleteFile(file){
-	if(confirm("Estás seguro de eliminar este elemento?") != false){
+function DeleteFile(div_id,tabla,id_registro,file){
+	if(confirm("Are you sure?") != false){
 		ajax=objetoAjax();
-		url = BASE_URL + '?p=delete&m=deleteFile&a='+file;
+		url = BASE_URL + '?p=delete&m=deleteFile&table='+tabla+'&rid='+id_registro+'&f='+div_id;
 		ajax.open("GET", url);
 		ajax.onreadystatechange=function() {
 			if (ajax.readyState==4) {
@@ -283,4 +283,110 @@ jQuery.fn.filterOn = function(parent) {
                 }
             //$(parent).trigger('change');
     	});
+}
+
+
+function toggle_visible(table,id,value){
+	ajax=objetoAjax();
+		url = BASE_URL + '?p=form&m=updateVisible&table='+table+'&rid='+id+'&v='+value;
+		ajax.open("GET", url);
+		/*
+ajax.onreadystatechange=function() {
+			if (ajax.readyState==4) {
+				aux = 0;
+				aux  = ajax.responseText;
+				if (aux == 1) document.getElementById(div_id).innerHTML ='ninguno';	
+			}
+		}
+*/
+		ajax.send(null);
+}
+
+function toggle_featured(table,id,value){
+
+	max = new Object;
+	
+	max['news'] = 	max['agenda'] = max['thoughts'] = max['crossconcepts'] = 4;
+	max['hightlight'] = 1;
+	
+	if ($('#destacado_home'+id).prop("checked")){	
+	var checkBoxes = $("input[name='destacado_home']:checked");
+	if (max[table] && checkBoxes.length > max[table]) {
+		alert(max[table]+' featured elements');
+		$('#destacado_home'+id).prop("checked", '');
+		return false;
+	}
+	}
+/*
+ str = "";
+		checkBoxes.each(function(i){
+			that = i;
+			console.log(i);
+
+			if ($(this).prop("checked")){
+		 	str += $(this).attr("value")+',';
+	 	
+
+				$(this).parent().parent().fadeOut();
+			}
+	});
+*/
+
+
+
+	ajax=objetoAjax();
+		url = BASE_URL + '?p=form&m=updateFeatured&table='+table+'&rid='+id+'&v='+value;
+		ajax.open("GET", url);
+		/*
+ajax.onreadystatechange=function() {
+			if (ajax.readyState==4) {
+				aux = 0;
+				aux  = ajax.responseText;
+				if (aux == 1) document.getElementById(div_id).innerHTML ='ninguno';	
+			}
+		}
+*/
+		ajax.send(null);
+}
+
+var normalize = (function() {
+  var from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç",
+      to   = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc",
+      mapping = {};
+ 
+  for(var i = 0, j = from.length; i < j; i++ )
+      mapping[ from.charAt( i ) ] = to.charAt( i );
+ 
+  return function( str ) {
+      var ret = [];
+      for( var i = 0, j = str.length; i < j; i++ ) {
+          var c = str.charAt( i );
+          if( mapping.hasOwnProperty( str.charAt( i ) ) )
+              ret.push( mapping[ c ] );
+          else
+              ret.push( c );
+      }
+      return ret.join( '' );
+  }
+ 
+})();
+
+
+function seoLink(text) {       
+    var characters = [' ','"',':','“','\'','·', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '+', '=', '_', '{', '}', '[', ']', '|', '/', '<', '>', ',', '.', '?', '--']; 
+
+    for (var i = 0; i < characters.length; i++) {
+         var char = String(characters[i]);
+         text = text.replace(new RegExp("\\" + char, "g"), '-');
+    }
+    text = text.toLowerCase();
+    text = normalize(text);
+    return text;
+}
+
+function validateSlug(f){
+
+	$('#'+f).val(seoLink($('#'+f).val()));
+new RegExp("[a-z]", "ig") 
+
 }

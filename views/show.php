@@ -9,15 +9,16 @@
 
 <h2><?= ucfirst($table_label)?></h2>
 
-<a class="btn btn-success" style="float:left;clear:both;"  href="form/build/<?= $table ?>"><i class="icon-plus"></i> <?=ADDNEW?></a><input class="" placeholder="<?= SEARCH ?>" style="float:left;margin-left:14px" type="text" id="search_pagination" value="">
+<a class="btn btn-success" style="float:left;clear:both;"  href="form/build/<?= $table ?>"><i class="icon-plus"></i> <?=ADDNEW?></a><input class="" placeholder="<?= SEARCH ?>" style="float:left;margin-left:14px" type="text" class="search_pagination" value="">
 
-<div style="clear:both;"></div>
 
+
+<div>
 <? if (count($items) > 0): ?>
-    <table class='table table-striped'  id='tablaMain'  border="0" >
+    <table class='table table-striped tablaMain' data-table="<?= $table ?>" id='tabla_0'  border="0" >
         <thead>
             <tr>
-			<th>Id</th>
+
          	<?	foreach ($items_head as $item): ?>
             	<th nowrap><?= formatear_primera_may($item) ?>	</th>		 
             <? endforeach; ?>
@@ -27,21 +28,28 @@
             <? $itemsTotal =count($items);
                 for($i=0;$i<$itemsTotal;$i++):   ?>
                    <tr id="recordsArray_<?= $items[$i]['id']?>">
+
                 <?    $row = $items[$i]; 
-                		foreach ($row as  $cell): ?>
+                $j = 0;
+                		foreach ($row as  $cell): 
+                		if ($j > 0):?>
 
                         <td>  <?= $cell;?></td>
 
-                    <? endforeach; ?>
+                    <? 
+                    endif;
+                    $j++;
+                    endforeach; ?>
                     <td class="actions" align="center" nowrap>
 				<a alt='edit' title='edit' href='form/build/<?= $table ?>/<?= $items[$i]['id']?>'><img src='views/img/pen_12x12.png'></a> &nbsp;&nbsp;
-				<a alt='delete' title='delete' href="javascript: DeleteRegistro('recordsArray_<?= $items[$i]['id']?>','<?= $items[$i]['id']?>','','<?= $table ?>');"><img src='views/img/x_11x11.png'></a></td>
+				<? if ($table != 'home_modules'): ?>
+				<a alt='delete' title='delete' href="javascript: DeleteRegistro('recordsArray_<?= $items[$i]['id']?>','<?= $items[$i]['id']?>','','<?= $table ?>');"><img src='views/img/x_11x11.png'></a><? endif; ?></td>
                     </tr>
             
             <? endfor; ?>
 	   </tbody>
     </table>
-		
+</div>		
 <? else: ?>
 
     <div style="clear:both;"></div><div class="alert alert-info"> <?= $table_label.' '.NODATA?></div>

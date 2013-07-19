@@ -7,11 +7,12 @@
 		<meta name="description" content="BackOffice">
 
 		<meta charset="utf-8">
-		<base href="<?= $base_url ?>" content="<?= $base_url ?>">
+		<base href="<?= $base_url ?>admin/" content="<?= $base_url ?>admin/">
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	   	<link href="views/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	   	<link href="views/vendor/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+	 
 	   	<link href="views/css/main.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="views/vendor/jQuery-ui-1.8.16/themes/base/jquery.ui.all.css">
 
@@ -29,11 +30,11 @@
 	<script type="text/javascript" src="views/vendor/tiny_mce2/tiny_mce_src.js"></script>
 
 		<script>
-		var BASE_URL = '<?= $base_url ?>';
+		var BASE_URL = '<?= $base_url ?>admin/';
 		</SCRIPT>
 		<script type="text/javascript" src="views/js/functions.js"></script>
 		<script src="views/js/pagination3.js"></script>
-
+		
 	</head>
 	<?php flush(); ?>
 	<body>
@@ -67,7 +68,7 @@
 
 	<div class="row-fluid">
     <div class="span2">
-          <div class="well sidebar-nav well-small">
+          <div class="well-small sidebar-nav" style="padding:1px">
             <ul class="nav nav-list">
               
 
@@ -78,12 +79,8 @@
 
          
 
-  
-            </ul>
           </ul>
 
-
-          
           </div><!--/.well -->
         </div><!--/span-->
 	
