@@ -4,6 +4,7 @@
 			</footer>
 		</div>
 	</div>
+		   	<script src="views/vendor/bootstrap/js/bootstrap.js"></script>
 	<script>
 		var loc = unescape(document.location.href);
 
@@ -14,6 +15,5 @@
 
 	<? 	echo $HOOK_JS; ?>		</script>
 	
-	<small>4.0</small>
 	</body>
 </html>
