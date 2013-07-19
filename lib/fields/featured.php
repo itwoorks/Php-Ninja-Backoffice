@@ -4,7 +4,7 @@ final class featured extends field{
 
 	function view(){
 		$output="";
-		$output .= "<input type='checkbox' onchange='toggle_featured(\"".$this->table."\",\"".$this->rid."\",this.checked);' name='".$this->fieldname."' id='".$this->fieldname."' value='1' ";
+		$output .= "<input type='checkbox' onchange='toggle_featured(\"".$this->table."\",\"".$this->rid."\",this.checked);' name='".$this->fieldname."' id='".$this->fieldname.$this->rid."' value='1' ";
 		if (!isset($this->value) or $this->value != 0) $output .= 'checked';
 						$output .= ">";
         return $output;	
