@@ -92,13 +92,14 @@ class formModel extends ModelBase
         mode : "textareas", 
         editor_selector : "mceEditor",
         theme: "advanced",
-        force_br_newlines :true,
-		force_p_newlines : false,
+	 forced_root_block : false,
+   force_br_newlines : true,
+   force_p_newlines : false,
         relative_urls : false,
-        width: "950px",
+        width: "100%",
         height: "350px",
         theme_advanced_resizing : true,
-        theme_advanced_buttons1 : "formatselect,separator,bold,italic,underline,separator,justifyleft,justifycenter,justifyright, justifyfull,separator,undo,redo,link,unlink,separator,fullscreen,code",
+        theme_advanced_buttons1 : "insertimage,separator,bold,italic,underline,separator,justifyleft,justifycenter,justifyright, justifyfull,separator,undo,redo,link,unlink,separator,fullscreen,code",
  		theme_advanced_blockformats : "h2,h3,p",
 		theme_advanced_buttons2 : "",
         theme_advanced_buttons3 : "",
@@ -108,13 +109,14 @@ class formModel extends ModelBase
         theme_advanced_statusbar_location : "bottom",
 
         extended_valid_elements : "iframe[src|width|height|name|align]",
-    plugins : "safari,pagebreak,style,layer,table,save,advhr,imagemanager,advlink,iespell,insertdatetime,preview,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,inlinepopups",
-        content_css: "views/css/tinymce_content.css"
+    plugins : "paste,safari,pagebreak,style,layer,table,save,advhr,imagemanager,advlink,iespell,insertdatetime,preview,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,inlinepopups",
+        content_css: "'.$config->get('base_url').'admin/views/css/tinymce_content.css"
         
     });';
 				for ($i=0;$i< count($fields);$i++){
 						if ($fields_types[$i] == 'fecha')
 							$output .='$(function() {	$("#'.$fields[$i].'").datepicker(); });';
+							
 						if ($fields_types[$i] == 'hora'){
 							$output .= "$('#".$fields[$i]."').timepicker({
 									hourGrid: 4,
@@ -126,7 +128,8 @@ class formModel extends ModelBase
 								$output .= "$('#".$fields[$i]."').filterOn('#".$fields[$i-1]."') ;";
 						}
 				}
-	
+
+		/* Before Submit */
     	$output .="\n function check_form_values(z){
 			
 					//var z = document.getElementById(x);
@@ -155,13 +158,14 @@ class formModel extends ModelBase
 						break;
 						case 'url':
 						$output .=" if((!validateURL(z.".$fields[$i].".value)) && (z.".$fields[$i].".value != \"\")){
-									alert('URl que empiece por http:// ');
+									alert('URL must begin at http:// ');
 									z.".$fields[$i].".style.background='#ffff66';
 									z.".$fields[$i].".focus();
 									return false;
 								}
 							";
 						break;
+												
 						case 'editor':
 						$output .= " $('input[name=\"".$fields[$i]."\"]').attr('value', encodeURIComponent( $('#".$fields[$i]."').elrte('val') )) ;"	 		;
 						break;
@@ -179,18 +183,56 @@ class formModel extends ModelBase
 			$tabla = $_POST['tabla'];
 			$action 				= ($_POST['action']); 
 			$updateRecordsArray 	= $_POST['recordsArray'];
-
+			$field = $_POST['field'];
+			$id = $_POST['id'];
 			if ($action == "updateRecordsListings"){
 	
 				$listingCounter = 0;
 				foreach ($updateRecordsArray as $recordIDValue) {
-						$consulta = $this->db->prepare("UPDATE ".$tabla." SET orden = " . $listingCounter . " WHERE id = " . $recordIDValue);		
-					$consulta->execute();
+				if($field != -1 and $id != -1){
+						$consulta = $this->db->prepare("UPDATE ".$tabla." SET orden = " . $listingCounter . " WHERE ".$field."='".$id."' and id = " . $recordIDValue);		
+						$consulta->execute();
+				}else{
+						$consulta = $this->db->prepare("UPDATE ".$tabla." SET orden = " . $listingCounter . " WHERE  id = " . $recordIDValue);		
+						$consulta->execute();
+					}					
 					$listingCounter = $listingCounter + 1;	
 				}
 				echo $listingCounter;
 			}
 
 }
+
+	function updateVisible(){
+
+			$tabla = $_GET['table'];
+			$rid = $_GET['rid'];
+			$v = $_GET['v'];
+			if ($v == 'true') $v ='1';
+			else $v = '0';
+
+
+			$consulta = $this->db->prepare("UPDATE ".$tabla." SET visible = '" . $v . "' WHERE id='".$rid."'" );		
+			$consulta->execute();
+				
+			
+
+	}
+	function updateFeatured(){
+
+			$tabla = $_GET['table'];
+			$rid = $_GET['rid'];
+			$v = $_GET['v'];
+			if ($v == 'true') $v ='1';
+			else $v = '0';
+
+
+			$consulta = $this->db->prepare("UPDATE ".$tabla." SET destacado_home = '" . $v . "' WHERE id='".$rid."'" );		
+			$consulta->execute();
+				
+			
+
+	}
+
 }
 ?>

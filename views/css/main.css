@@ -31,3 +31,12 @@ td{word-wrap: break-word}
 .ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
 
 option.combo_child {}
+
+
+.tablaMain td {font-size:12px}
+
+h1{font-size:22px}
+h2{font-size:18px}
+h3{font-size:14px}
+.nav-header{background: #f7f7f7;}
+.nav li {font-size:13px}
