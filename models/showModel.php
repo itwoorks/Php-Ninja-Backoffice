@@ -8,13 +8,8 @@ class showModel extends ModelBase
 	}
 	
 	public function getItemsHead($table){
-    	require "setup/".$table.".php";
-/*
-		if ( isset($fields_to_show) and is_array($fields_to_show) and count($fields_to_show)>1) 
-			return  $fields_to_show ;
-	   return $fields_labels;
-*/
-$fr = $fields_labels;
+    	require  "setup/".$table.".php";
+    	$fr = $fields_labels;
 		if ( isset($fields_to_show) and is_array($fields_to_show) and count($fields_to_show)>0){
 			$fr = array();
 			for ($i=0;$i < count($fields);$i++):
@@ -25,15 +20,13 @@ $fr = $fields_labels;
 		
 	   return $fr;
 	}
-
-    public function getAll($table){
-    
-        include "setup/".$table.".php";
+	public function getAllByField($table,$field,$rid_in_field){
+   		include "setup/".$table.".php";
         include_once "lib/fields/field.php";
         
         $order = (gett('sorder') != -1) ? gett('sorder') : $default_order; 
              
-        $consulta = $this->db->prepare('SELECT * FROM '.$table.' order by '.$order);
+        $consulta = $this->db->prepare('SELECT * FROM '.$table.' where '.$field.'= "'.$rid_in_field.'" order by '.$order);
         $consulta->execute();
         $array_return = array();
         
@@ -44,7 +37,36 @@ $fr = $fields_labels;
 	               if (!isset($fields_to_show) or in_array($fields[$i],$fields_to_show) or empty($fields_to_show)   ): 
 						if (!class_exists($fields_types[$i])) 
 						    die ("La clase ".$fields_types[$i]." no existe");
-				        $field_aux = new $fields_types[$i]($fields[$i],$fields_labels[$i],$fields_types[$i],$r[$fields[$i]]);
+				        $field_aux = new $fields_types[$i]($fields[$i],$fields_labels[$i],$fields_types[$i],$r[$fields[$i]],$table,  $row_array['id']);
+				    	$row_array[] =$field_aux->view();
+				    endif; 
+             endfor; 
+             $array_return[] = $row_array;
+
+        endwhile;
+        return $array_return;
+
+	}
+    public function getAll($table){
+    
+        include "setup/".$table.".php";
+        include_once "lib/fields/field.php";
+        
+        $order = (gett('sorder') != -1) ? gett('sorder') : $default_order; 
+        $table_aux = $table;
+		if (isset($group_by) and !empty($group_by)) $table_aux.= ' GROUP BY '.$group_by.' ';  
+        $consulta = $this->db->prepare('SELECT * FROM '.$table_aux.' order by '.$order);
+        $consulta->execute();
+        $array_return = array();
+        
+		while ($r = $consulta->fetch()):
+            $row_array = array();
+            $row_array['id'] = $r['id'];
+            for ($i = 0; $i < count($fields);$i++): 
+	               if (!isset($fields_to_show) or in_array($fields[$i],$fields_to_show) or empty($fields_to_show)   ): 
+						if (!class_exists($fields_types[$i])) 
+						    die ("La clase ".$fields_types[$i]." no existe");
+				        $field_aux = new $fields_types[$i]($fields[$i],$fields_labels[$i],$fields_types[$i],$r[$fields[$i]],$table,$row_array['id']);
 				    	$row_array[] =$field_aux->view();
 				    endif; 
              endfor; 
@@ -54,7 +76,7 @@ $fr = $fields_labels;
         return $array_return;
         
     }
-
+   
     public function js($table){
         require "setup/".$table.".php";
             $output= "";
@@ -63,13 +85,15 @@ $fr = $fields_labels;
 
 			
 		
-			$output .='$("#tablaMain tbody > tr > td").click(function(){
+			/*
+$output .='$(".tablaMain tbody > tr > td").click(function(){
 				var p = $(this).parent();
 				var x = $("td:last-child a:first-child",p).attr("href");
 				if (!$(this).hasClass("actions"))
 				location.href= x;
 			});';
-			$output .='$("#tablaMain tbody > tr").mouseover(function(){
+			*/
+			$output .='$(".tablaMain tbody > tr").mouseover(function(){
 				$(this).css("cursor","hand");
 				$(this).css("cursor","pointer");	
 				});';
