@@ -56,7 +56,7 @@ class formController extends ControllerBase
 			else $form->edit($table,$rid);
 
         
-			header("location: ../show/table/".$table."/success");
+			header("location: ".$_SESSION['return_url']);
 
  	} 
 
