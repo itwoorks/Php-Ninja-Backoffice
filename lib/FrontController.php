@@ -15,13 +15,11 @@ class FrontController
 		require 'lib/SPDO.php'; //PDO con singleton
 		require 'lib/View.php'; //Mini motor de plantillas
               
-		require 'config.php'; //Archivo con configuraciones.
+		require '../config.php'; //Archivo con configuraciones.
  
-    
         /* Language */
         require 'lib/lang/'.$config->get('lang').'.php';
-        
-
+	    if (!isset($_SERVER['return_url'])) $_SERVER['return_url'] ='';
         $PATH = dirname(__FILE__);
 
 		if(gett('p') != -1) $controllerName = gett('p')  . 'Controller';
