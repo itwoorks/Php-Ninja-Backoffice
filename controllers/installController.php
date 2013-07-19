@@ -5,7 +5,8 @@ class installController extends ControllerBase
     public function makeSetups(){
         require 'models/installModel.php';
     	$installModel = new installModel();
-        $installModel->makeSetups();
+    	$params = gett('a');
+        $installModel->makeSetups($params);
         
     }
 	     public function fillDb(){
@@ -15,7 +16,12 @@ class installController extends ControllerBase
         $installModel->fillDb($ENTRYS_TABLE);
         
     }
+		public function getmodels(){
+		include "models/generatorModel.php";
+		$gem = new generatorModel();
+		$gem->generateModels();
 	
+	}
  
 }
 ?>
