@@ -1,10 +1,10 @@
-# Php Ninja BackOffice
-
+# Php Ninja BackOffice 
 
 Beto Ayesa,  @php_ninja
 contacto@phpninja.info  
 www.phpninja.info  
- 
+
+NOTE: Don't use this repo, it's little inestable. Currently I'm refactoring it and it could be little inestable.
 
 Introduction
 ------------
@@ -33,15 +33,15 @@ Installation in 1 minute
 - PDO:: Support
 - MySQL
 - Before building your Bd, make sure that:
-* every table has 'id' PRIMARY auto increment FIELD
-* Foreign Keys must follow this pattern TABLENAMEID, Example: accounts -> accountsId
-* If you want to use drag and drop rows sorting, you must have a INT field called 'orden'
+* every table has '<table_name>Id' PRIMARY auto increment FIELD
+* Foreign Keys must follow the same pattern '<table_name>Id', Example: accounts -> accountsId
+* If you want to use drag and drop rows sorting, you must have a INT field called 'orden' in the table
 
 #### Steps:  
 * Set your own database, general project settings and admin password at config.php
 * db_prefix is your tables prefix (ex. wp_)
 * chmod 777 /setup/ - necesary if you want to auto generate TABLE SETUP files
-* Run /install/makeSetups from the browser. All setup files will be created. 
+* Run /install/makeSetups FROM THE BROWSER (http://). All setup files will be created. 
 * chmod 777 /data/ - folder where images and files will be stored
 * Goto your http:// 
 * Login with your user / pass
