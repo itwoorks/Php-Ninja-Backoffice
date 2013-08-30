@@ -143,8 +143,8 @@ final class password extends field{
 
 License
 ----------------
-Php Ninja BackOffice - CRUD 
-    Copyright (C) 2013  Beto Ayesa contacto@phpninja.info
+Php Ninja BackOffice - CRUD
+Copyright (C) 2013  Beto Ayesa contacto@phpninja.info
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -159,3 +159,4 @@ Php Ninja BackOffice - CRUD
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+http://opensource.org/licenses/GPL-3.0
