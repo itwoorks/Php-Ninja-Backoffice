@@ -13,7 +13,7 @@ class loginController extends ControllerBase
     	require 'models/loginModel.php';
     	$loginModel = new loginModel();
     	
-    	$loginModel->login(gett('user'),gett('pass'));
+    	$loginModel->login(get_param('user'),get_param('pass'));
 	}
  
 	public function logout()
