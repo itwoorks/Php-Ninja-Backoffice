@@ -26,19 +26,27 @@ class View
         $menu = new menuModel;
         $vars['menu'] = $menu->menu();
 		$vars['base_url'] = $config->get('base_url');
-		$vars['base_title'] = $config->get('base_title');
+		$vars['base_title'] = $SEO_TITLE = $config->get('base_title');
+				$LOGIN = isset($_SESSION['initiated']) and $_SESSION['initiated'] ? true : false;
+		$OFFSET = isset($_GET['offset']) ? $_GET['offset'] : 0;
+		$PERPAGE = isset($_GET['perpage']) ? $_GET['perpage'] : 40;
+ 		$FORM = new formHelper();
+ 		$TIMEAGO = new TimeAgo();
+ 		$LANG = $_SESSION['lang'];
+ 		
+		$SEO_DESCRIPTION = $config->get('seo_description');
 		if(is_array($vars))
 		{
                     foreach ($vars as $key => $value)
                     {
                 	$$key = $value;
                     }
-          }
+        }
 
-    	
-    		if ($show_top_footer) include $config->get('viewsFolder')."includes/top.php";    		
-	       	include($path);
-    		if ($show_top_footer) include $config->get('viewsFolder')."includes/footer.php";
+
+    	if ($show_top_footer) include $config->get('viewsFolder')."includes/top.php";  
+    	   	include($path);
+    	if ($show_top_footer) include $config->get('viewsFolder')."includes/footer.php";
 		
 	}
 }

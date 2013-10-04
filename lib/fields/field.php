@@ -31,6 +31,11 @@ abstract class field{
 	
 	
 }
+
+
+
+/*
+
 include "slug.php";
 include "featured.php";
 include "visible.php";
@@ -62,3 +67,4 @@ include "text.php";
 include "textarea.php";
 include "truefalse.php";
 include "url.php";
+*/

@@ -27,7 +27,7 @@ final class file_img extends field{
 	}
 		
 	function exec_add () {
-		if ($_FILES[$this->fieldname]['name'] != ""){
+		if (isset($_FILES[$this->fieldname]['name']) and $_FILES[$this->fieldname]['name'] != ""){
 					$filename_new = generar_nombre_archivo($_FILES[$this->fieldname]['name']);
 	copy($_FILES[$this->fieldname]['tmp_name'],$this->config->get('data_dir').'img/raw/'.$filename_new);
 					copy($_FILES[$this->fieldname]['tmp_name'],$this->config->get('data_dir').'img/'.$filename_new);

@@ -2,7 +2,7 @@
 
 
 
-final class youtube extends field{
+final class youtubeReal extends field{
 
 	function view(){
 		if ($this->value != '') return 'Youtube URL';

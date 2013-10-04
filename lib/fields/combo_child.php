@@ -42,7 +42,7 @@ function bake_combo($tabla,$select_name,$id_selected){
 	    $consulta = $this->db->prepare("SELECT * from $tabla " );
     	$consulta->execute();
         
-		$output = "<select name=\"".$select_name."\" id=\"".$select_name."\" >";
+		$output = "<select class='form-control' name=\"".$select_name."\" id=\"".$select_name."\" >";
 //		$output .= "<option value=\"-1\">---</option>";
 	
 		

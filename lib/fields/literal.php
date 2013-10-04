@@ -8,7 +8,7 @@ final class literal extends field{
 		return $this->value;
 	}
 	function bake_field (){
-		return "<input  type=\"text\" class='span5' name=\"".$this->fieldname."\" id=\"".$this->fieldname."\" value=\"".$this->value."\">";
+		return "<input  type=\"text\" class='span5' name=\"".$this->fieldname."\" id=\"".$this->fieldname."\" value=\"".trim($this->value)."\">";
 
 		
 
@@ -16,12 +16,11 @@ final class literal extends field{
 	}
 		
 	function exec_add () {
-
-return htmlentities(utf8_decode($this->value));
+		return addslashes(stripslashes($this->value));
 
 	}
 	function exec_edit () {
-return htmlentities(utf8_decode($this->value));
+		return addslashes(stripslashes($this->value));
 	}
 
 }
