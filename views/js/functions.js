@@ -379,14 +379,16 @@ function seoLink(text) {
          var char = String(characters[i]);
          text = text.replace(new RegExp("\\" + char, "g"), '-');
     }
-    text = text.toLowerCase();
     text = normalize(text);
+    text = text.toLowerCase();
+    text = text.replace(/\W/g, '-');
+      text = text.replace(new RegExp("\\--", "g"), '-');
     return text;
 }
 
 function validateSlug(f){
 
 	$('#'+f).val(seoLink($('#'+f).val()));
-new RegExp("[a-z]", "ig") 
+
 
 }

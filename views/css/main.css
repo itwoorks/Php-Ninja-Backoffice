@@ -33,7 +33,7 @@ td{word-wrap: break-word}
 option.combo_child {}
 
 
-.tablaMain td {font-size:12px}
+.tablaMain td {font-size:12px;min-width:70px;}
 
 h1{font-size:22px}
 h2{font-size:18px}
