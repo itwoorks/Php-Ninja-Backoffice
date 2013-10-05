@@ -5,11 +5,10 @@ class formController extends ControllerBase
 	function build(){
 
     	require 'models/formModel.php'; 	
-        require "lib/fields/field.php";
-		$form = new formModel();
-        $table = gett('a');
-        $rid = gett('i');
-        $op = gett('m');
+   		$form = new formModel();
+        $table = get_param('a');
+        $rid = get_param('i');
+        $op = get_param('m');
         require "setup/".$table.".php";
         if ($rid == '') $rid =-1;    			
         $form_html = "";
@@ -20,7 +19,7 @@ class formController extends ControllerBase
     	for ($i=0;$i< count($fields);$i++){
     			if ($fields[$i] != 'id'){	
     					$form_html.= "<div class='control-group'><label class='control-label'>";
-    					$form_html .= formatear_primera_may($fields_labels[$i]);
+    					$form_html .= ucfirst($fields_labels[$i]);
     					$form_html .= "</label><div class='controls'>";		
     					if (!class_exists($fields_types[$i])) die ("La clase ".$fields_types[$i]." no existe");
     					$VALUE = isset($raw[$fields[$i]]) ? $raw[$fields[$i]] : '';
@@ -49,8 +48,8 @@ class formController extends ControllerBase
 
  	        require 'models/formModel.php';
         	$form = new formModel();
-        	$rid = gett('rid');
-        	$table = gett('table');
+        	$rid = get_param('rid');
+        	$table = get_param('table');
 
       		if ($rid == -1) $form->add($table);
 			else $form->edit($table,$rid);
@@ -61,7 +60,7 @@ class formController extends ControllerBase
  	} 
 
     public function addToCombo(){
-        $table = gett('a');
+        $table = get_param('a');
         include "models/formModel.php";
         $form = new formModel();
         $form->add($table);

@@ -1,5 +1,5 @@
 <?php
-require_once("php_fast_cache.php");
+
 
         
 abstract class ModelBase
@@ -11,7 +11,7 @@ abstract class ModelBase
 	{
 		$this->db = SPDO::singleton();
 		$this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-		$this->cache = new phpFastCache();
+		
 
 	}
 	

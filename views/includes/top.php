@@ -7,7 +7,7 @@
 		<meta name="description" content="BackOffice">
 
 		<meta charset="utf-8">
-		<base href="<?= $base_url ?>admin/" content="<?= $base_url ?>admin/">
+		<base href="<?= $base_url ?>" content="<?= $base_url ?>admin/">
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	   	<link href="views/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />

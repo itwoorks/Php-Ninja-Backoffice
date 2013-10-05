@@ -26,15 +26,13 @@ class View
         $menu = new menuModel;
         $vars['menu'] = $menu->menu();
 		$vars['base_url'] = $config->get('base_url');
-		$vars['base_title'] = $SEO_TITLE = $config->get('base_title');
-				$LOGIN = isset($_SESSION['initiated']) and $_SESSION['initiated'] ? true : false;
+		$vars['base_title'] =  $config->get('base_title');
+		$LOGIN = isset($_SESSION['initiated_admin']) and $_SESSION['initiated_admin'] ? true : false;
 		$OFFSET = isset($_GET['offset']) ? $_GET['offset'] : 0;
 		$PERPAGE = isset($_GET['perpage']) ? $_GET['perpage'] : 40;
- 		$FORM = new formHelper();
- 		$TIMEAGO = new TimeAgo();
- 		$LANG = $_SESSION['lang'];
+ 		$LANG = $config->get('lang');
  		
-		$SEO_DESCRIPTION = $config->get('seo_description');
+		
 		if(is_array($vars))
 		{
                     foreach ($vars as $key => $value)

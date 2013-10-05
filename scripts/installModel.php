@@ -71,7 +71,7 @@ if (strstr($name,"file")) $type = 'file_file';
     		$resultx =  '<?
         
         $table_label = "'.$tabla.'";
-        $default_order = "id ASC";
+        $default_order = "'.$tabla.'Id ASC";
         $fields= array('.$campos_a_mostrar.');
         
         $fields_labels= array('.$labels.');

@@ -2,7 +2,7 @@
 class formModel extends ModelBase
 {
 	public function getFormValues($table,$rid){    	
-        $consulta = $this->db->prepare("SELECT * FROM ".$table." where id='".$rid."' limit 1");
+        $consulta = $this->db->prepare("SELECT * FROM ".$table." where ".$table."Id='".$rid."' limit 1");
         $consulta->execute();
         return $consulta->fetch();
 	}
@@ -15,7 +15,7 @@ class formModel extends ModelBase
 
     	for ($i=0;$i< count($fields) ;$i++){
     		
-    		if ($fields[$i] != 'id')	{
+    		if ($fields[$i] != $table.'Id')	{
 	    		$retrieved = '';
     			if ($fields_types[$i] != 'file_img' and $fields_types[$i] != 'file_file'){
     				$retrieved = gett($fields[$i]);

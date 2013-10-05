@@ -6,7 +6,7 @@ DirectoryIndex index.html index.php
 RewriteEngine On
 
 # Installation directory
-RewriteBase /alphas/backups/public_html/admin/
+RewriteBase /alphas/admin/
 
 # Allow any files or directories that exist to be displayed directly
 RewriteCond %{REQUEST_FILENAME} !-f

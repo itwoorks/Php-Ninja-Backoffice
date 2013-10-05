@@ -4,10 +4,10 @@ $config = Config::singleton();
 
 	$config->set('lang','esp');
 	$config->set('base_title','magma');
-$config->set('base_url','//localhost/alphas/magma-web/admin/');
-$config->set('base_url_data','//localhost/alphas/magma-web/data/');
+$config->set('base_url','//localhost/alphas/admin/');
+$config->set('base_url_data','//localhost/alphas/admin/data/');
 	$config->set('db_prefix','');
-	$config->set('tabla_default','eventos');
+	$config->set('tabla_default','items');
     $config->set('validUser','test');
     $config->set('validPass','test');
 
@@ -41,7 +41,7 @@ $config->set('base_url_data','//localhost/alphas/magma-web/data/');
   
 	 
 	$config->set('dbhost', 'localhost');
-	$config->set('dbname', 'magma');
+	$config->set('dbname', 'iguana');
 	$config->set('dbuser', 'root');
 	$config->set('dbpass', 'tryagain');
 

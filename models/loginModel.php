@@ -26,15 +26,15 @@ class loginModel extends ModelBase
         		$_SESSION['login_attemp_admin'] = 1;
         		$_SESSION['HTTP_USER_AGENT'] = md5($_SERVER['HTTP_USER_AGENT'].$config->get('base_title'));
         	
-        		header ("location: ".$config->get('base_url')."admin/");
+        		header ("location: ".$config->get('base_url')."");
         	} else{ 
 				//	echo 'invalid';
         		$_SESSION['login_attemp']++;
-        		header ("location: ".$config->get('base_url')."admin/?c=1");
+        		header ("location: ".$config->get('base_url')."?c=1");
         	}				
         } else {
 
-        	header ("location: ".$config->get('base_url')."admin/?c=2");
+        	header ("location: ".$config->get('base_url')."?c=2");
         } 
 
 	}

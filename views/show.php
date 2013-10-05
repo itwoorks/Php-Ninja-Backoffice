@@ -20,14 +20,14 @@
             <tr>
 
          	<?	foreach ($items_head as $item): ?>
-            	<th nowrap><?= formatear_primera_may($item) ?>	</th>		 
+            	<th nowrap><?= ucfirst($item) ?>	</th>		 
             <? endforeach; ?>
             <th class="nover" nowrap=nowrap width="60"><?=ACTIONS ?></th></tr>
         </thead>
         <tbody>
             <? $itemsTotal =count($items);
                 for($i=0;$i<$itemsTotal;$i++):   ?>
-                   <tr id="recordsArray_<?= $items[$i]['id']?>">
+                   <tr id="recordsArray_<?= $items[$i][$table.'Id']?>">
 
                 <?    $row = $items[$i]; 
                 $j = 0;
@@ -41,9 +41,9 @@
                     $j++;
                     endforeach; ?>
                     <td class="actions" align="center" nowrap>
-				<a alt='edit' title='edit' href='form/build/<?= $table ?>/<?= $items[$i]['id']?>'><img src='views/img/pen_12x12.png'></a> &nbsp;&nbsp;
+				<a alt='edit' title='edit' href='form/build/<?= $table ?>/<?= $items[$i][$table.'Id']?>'><img src='views/img/pen_12x12.png'></a> &nbsp;&nbsp;
 				<? if ($table != 'home_modules'): ?>
-				<a alt='delete' title='delete' href="javascript: DeleteRegistro('recordsArray_<?= $items[$i]['id']?>','<?= $items[$i]['id']?>','','<?= $table ?>');"><img src='views/img/x_11x11.png'></a><? endif; ?></td>
+				<a alt='delete' title='delete' href="javascript: DeleteRegistro('recordsArray_<?= $items[$i][$table.'Id']?>','<?= $items[$i][$table.'Id']?>','','<?= $table ?>');"><img src='views/img/x_11x11.png'></a><? endif; ?></td>
                     </tr>
             
             <? endfor; ?>

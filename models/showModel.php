@@ -22,9 +22,9 @@ class showModel extends ModelBase
 	}
 	public function getAllByField($table,$field,$rid_in_field){
    		include "setup/".$table.".php";
-        include_once "lib/fields/field.php";
+      //  include_once "lib/fields/field.php";
         
-        $order = (gett('sorder') != -1) ? gett('sorder') : $default_order; 
+        $order = (get_param('sorder') != -1) ? get_param('sorder') : $default_order; 
              
         $consulta = $this->db->prepare('SELECT * FROM '.$table.' where '.$field.'= "'.$rid_in_field.'" order by '.$order);
         $consulta->execute();
@@ -50,9 +50,9 @@ class showModel extends ModelBase
     public function getAll($table){
     
         include "setup/".$table.".php";
-        include_once "lib/fields/field.php";
+       // include_once "lib/fields/field.php";
         
-        $order = (gett('sorder') != -1) ? gett('sorder') : $default_order; 
+        $order = (get_param('sorder') != -1) ? get_param('sorder') : $default_order; 
         $table_aux = $table;
 		if (isset($group_by) and !empty($group_by)) $table_aux.= ' GROUP BY '.$group_by.' ';  
         $consulta = $this->db->prepare('SELECT * FROM '.$table_aux.' order by '.$order);
@@ -61,12 +61,12 @@ class showModel extends ModelBase
         
 		while ($r = $consulta->fetch()):
             $row_array = array();
-            $row_array['id'] = $r['id'];
+            $row_array[$table.'Id'] = $r[$table.'Id'];
             for ($i = 0; $i < count($fields);$i++): 
 	               if (!isset($fields_to_show) or in_array($fields[$i],$fields_to_show) or empty($fields_to_show)   ): 
 						if (!class_exists($fields_types[$i])) 
 						    die ("La clase ".$fields_types[$i]." no existe");
-				        $field_aux = new $fields_types[$i]($fields[$i],$fields_labels[$i],$fields_types[$i],$r[$fields[$i]],$table,$row_array['id']);
+				        $field_aux = new $fields_types[$i]($fields[$i],$fields_labels[$i],$fields_types[$i],$r[$fields[$i]],$table,$row_array[$table.'Id']);
 				    	$row_array[] =$field_aux->view();
 				    endif; 
              endfor; 

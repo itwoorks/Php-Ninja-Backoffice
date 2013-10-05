@@ -6,7 +6,7 @@ class showController extends ControllerBase
     	$config = Config::singleton();
 	    require 'models/showModel.php';
 		$items = new showModel();
-     	$table = gett('a') != -1 ? gett('a') : $config->get('tabla_default');
+     	$table = get_param('a') != -1 ? get_param('a') : $config->get('tabla_default');
 		$_SESSION['return_url'] =  $_SERVER['REQUEST_URI'] ;
 		$data = Array(/* "table_label" => $table_label, */
 		          "title" => "BackOffice | $table",
@@ -15,7 +15,7 @@ class showController extends ControllerBase
 		          "HOOK_JS" => $items->js($table),
                   "table" => $table,
 					"table_label" =>$items->getTableAttribute($table,'table_label'),
-					"notification" => gett('i') != -1 ? 'Se ha guardado correctamente' : ''
+					"notification" => get_param('i') != -1 ? 'Se ha guardado correctamente' : ''
 		      		          
 		          );
 		
@@ -27,8 +27,8 @@ class showController extends ControllerBase
     	$config = Config::singleton();
 	    require 'models/showModel.php';
 		$items = new showModel();
-     	$table = gett('a');
-     	$tableForeignId=gett('i');		
+     	$table = get_param('a');
+     	$tableForeignId=get_param('i');		
 		$_SESSION['return_url'] =  $_SERVER['REQUEST_URI'] ;
 		$data = Array(/* "table_label" => $table_label, */
 		          "title" => "BackOffice | $table",
@@ -37,7 +37,7 @@ class showController extends ControllerBase
 		          "HOOK_JS" => $items->js($table),
                   "table" => $table, 
 					"table_label" => "Courses: ". $titles[$coursestypesId], //$items->getTableAttribute($table,'table_label'),
-					"notification" => gett('i') != -1 ? 'Se ha guardado correctamente' : ''
+					"notification" => get_param('i') != -1 ? 'Se ha guardado correctamente' : ''
 		      		          
 		          );
 
@@ -53,7 +53,7 @@ class showController extends ControllerBase
       require 'models/showModel.php';
 		$items = new showModel();
      	$table = 'courses';
-     	$coursesId=gett('a');
+     	$coursesId=get_param('a');
 $_SESSION['coursesId'] =  $coursesId ;
 $_SESSION['return_url'] =  $_SERVER['REQUEST_URI'] ;
     	require 'models/formModel.php'; 	
@@ -84,7 +84,7 @@ $_SESSION['return_url'] =  $_SERVER['REQUEST_URI'] ;
 		          "table" => $table,
                   "table_label" => $raw['title'], 
 
-					"notification" => gett('i') != -1 ? 'Saved successfully' : ''
+					"notification" => get_param('i') != -1 ? 'Saved successfully' : ''
 		      		          
 		          );
 		$this->view->show("detail-course.php", $data);

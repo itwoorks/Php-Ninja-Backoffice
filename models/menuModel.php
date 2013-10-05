@@ -12,10 +12,10 @@ class menuModel extends ModelBase
         $menu = array();
         $db_prefix = $config->get('db_prefix');
         while ($row = $consulta->fetch()) {
-            if ($db_prefix == '' or strstr($row[0],$db_prefix) )
-			if (file_exists("setup/".$row[0].".php")){
-			    include "setup/".$row[0].".php";
-    	    	$menu[] = array($row[0],$table_label);
+          if ($db_prefix == '' or strstr($row['Tables_in_'.$config->get('dbname')],$db_prefix) )
+			if (file_exists("setup/".$row['Tables_in_'.$config->get('dbname')].".php")){
+			    include "setup/".$row['Tables_in_'.$config->get('dbname')].".php";
+    	    	$menu[] = array($row['Tables_in_'.$config->get('dbname')],$table_label);
     	    }
     	}
        return $menu;
